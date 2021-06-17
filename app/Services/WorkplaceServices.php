@@ -15,4 +15,8 @@ class WorkplaceServices
     public static function getWorkplaceById($workPlaceId){
         return WorkPlace::find($workPlaceId);
     }
+
+    public static function getWorkplaceByName($name){
+        return WorkPlace::where('name',$name)->get()->first();
+    }
 }

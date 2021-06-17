@@ -20,14 +20,14 @@
                 <div class="modal-body">
                     <div class="mb-3 row">
                         <div class="col-md-4">
-                            <input class="form-control" type="text" name="first_name" placeholder="First Name">
+                            <input class="form-control" type="text" name="name" placeholder="First Name">
                         </div>
-                        <div class="col-md-4">
+                        {{--<div class="col-md-4">
                             <input class="form-control" type="text" name="middle_name" placeholder="Middle Name">
                         </div>
                         <div class="col-md-4">
                             <input class="form-control" type="text" name="last_name" placeholder="Last Name">
-                        </div>
+                        </div>--}}
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">

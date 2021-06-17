@@ -32,9 +32,7 @@
                             <thead>
                             <tr>
                                 <th>Workplace</th>
-                                <th>First</th>
-                                <th>Middle</th>
-                                <th>Last</th>
+                                <th>Name</th>
                                 <th>Gender</th>
                                 <th>Birth</th>
                                 <th>Nationality</th>
@@ -48,9 +46,7 @@
                             @foreach($employees as $employee)
                                 <tr>
                                     <td>{{$employee->workPlace->name}}</td>
-                                    <td>{{$employee->first_name}}</td>
-                                    <td>{{$employee->middle_name}}</td>
-                                    <td>{{$employee->last_name}}</td>
+                                    <td>{{$employee->name}}</td>
                                     <td>{{$employee->gender}}</td>
                                     <td>{{$employee->birthday->format('d M Y')}}</td>
                                     <td>{{$employee->nationality}}</td>

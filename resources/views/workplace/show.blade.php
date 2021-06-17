@@ -73,14 +73,15 @@
                     <tbody>
                     @foreach($workplace->employees as $employee)
                         <tr>
-                            <td>{{$employee->first_name.' '.$employee->middle_name.' '.$employee->last_name}}</td>
+                            <td>{{$employee->name}}</td>
                             <td>{{$employee->gender}}</td>
                             <td>{{$employee->birthday->format('d M Y')}}</td>
                             <td>{{$employee->nationality}}</td>
                             <td>{{$employee->entryDate->format('d M Y')}}</td>
                             <td>{{$employee->phone}}</td>
                             <td>{{$employee->contractType}}</td>
-                            <td class="{{$employee->isChecked ? 'bg-success':'bg-warning'}}">{{$employee->isChecked ? 'Checked':'Not Checked'}}</td>
+                            <td class="{{$employee->isChecked ? 'bg-success text-white':'bg-warning'}}">
+                                {{$employee->isChecked ? 'Checked':'Not Checked'}}</td>
                             <td class="">
                                 @include('partials._member_checkup_modal')
                                 <div class="dropup">

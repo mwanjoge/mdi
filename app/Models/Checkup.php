@@ -13,6 +13,10 @@ class Checkup extends Model
         'employee_id','work_place_id','checkupDate','leader','type','status'
     ];
 
+    protected $casts = [
+        'checkupDate' => 'date'
+    ];
+
     public function workPlace(){
         return $this->belongsTo(WorkPlace::class);
     }

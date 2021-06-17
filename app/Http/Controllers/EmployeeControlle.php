@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\EmployeeImport;
 use App\Models\Employee;
+use App\Models\UploadReport;
 use App\Services\EmployeeServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EmployeeControlle extends Controller
@@ -50,6 +53,22 @@ class EmployeeControlle extends Controller
         Employee::create($request->all());
         Alert::success('Complete', 'Employee Successfully Saved');
         return redirect()->back();
+    }
+
+    public function upload(Request $request){
+        //return $request->all();
+        $import = new EmployeeImport();
+        $import->import($request->upload);
+        $issues = UploadReport::all();
+        if(Session::has('issue')){
+            Alert::warning('Complete With Issues', 'Excel Uploaded with
+             some issues it looks like some of employee listed below have been already checked');
+            return view('upload.issues',compact('issues'));
+        }
+        else{
+            Alert::success('Complete', 'All Employees Uploaded Successfully');
+            return redirect()->back();
+        }
     }
 
     /**
