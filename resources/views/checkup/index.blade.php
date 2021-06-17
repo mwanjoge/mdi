@@ -71,7 +71,7 @@
                     <tbody>
                     @foreach($checkups as $checkup)
                         <tr>
-                            <td>{{$checkup->employee->first_name.' '.$checkup->employee->middle_name.' '.$checkup->employee->last_name}}</td>
+                            <td>{{$checkup->employee->name}}</td>
                             <td>{{$checkup->employee->gender}}</td>
                             <td>{{$checkup->employee->birthday->format('d M Y')}}</td>
                             <td>{{$checkup->workPlace->name}}</td>

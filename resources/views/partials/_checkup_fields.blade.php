@@ -2,7 +2,7 @@
     @foreach($employees as $employee)
         <thead>
         <tr>
-            <th colspan="5">{{$employee->fullName()}}
+            <th colspan="5">{{$employee->name}}
                 <input type="hidden" name="employee[]" value="{{$employee->id}}">
             </th>
         </tr>
