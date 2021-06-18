@@ -8,10 +8,10 @@
             @include('partials._workplace_create_modal')
             @include('partials._workplace_upload_modal')
             <div class="btn-group float-end" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#work-place-upload">
+                {{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#work-place-upload">
                     <i class="fa fa-upload"></i>
                     Upload
-                </button>
+                </button>--}}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#work-place-create">
                     <i class="fa fa-plus"></i>
                     Create new
@@ -47,7 +47,10 @@
                                     <td>{{$workplace->status}}</td>
                                     <td>
                                         <a href="{{route('workplace.show',$workplace->id)}}">
-                                            <i class="fa fa-angle-right"></i>show
+                                            <i class="fa fa-angle-right"></i> show
+                                        </a>
+                                        <a href="{{route('workplace.report',$workplace->id)}}" class="p-1">
+                                            <i class="fa fa-file-pdf-o"></i> report
                                         </a>
                                     </td>
                                 </tr>

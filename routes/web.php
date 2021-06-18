@@ -24,3 +24,4 @@ Route::resource('employee',EmployeeControlle::class);
 Route::resource('workplace',WorkplaceController::class);
 Route::resource('checkup',CheckupController::class);
 Route::post('employee/upload',[EmployeeControlle::class,'upload'])->name('employee.upload');
+Route::get('workplace/report/{id}',[WorkplaceController::class,'report'])->name('workplace.report');

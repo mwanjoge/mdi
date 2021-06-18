@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CheckupExport;
+use App\Models\Checkup;
 use App\Models\WorkPlace;
 use App\Services\WorkplaceServices;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class WorkplaceController extends Controller
@@ -52,6 +56,14 @@ class WorkplaceController extends Controller
         WorkPlace::create($request->all());
         Alert::success('Complete', 'Workplace Successfully Saved');
         return redirect()->back();
+    }
+
+    public function report($id){
+        /*$pdf = PDF::loadView('workplace._report_tamplete');
+        return $pdf->download('data.pdf');*/
+        /*return Excel::download(new CheckupExport, 'checkups.pdf');*/
+        $reports = Checkup::where('work_place_id',$id)->get();
+        return view('workplace.workplace_report',compact('reports'));
     }
 
     /**
