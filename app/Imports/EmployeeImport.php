@@ -34,9 +34,8 @@ class EmployeeImport implements ToCollection, WithHeadingRow, SkipsOnError
                     foreach($employee->checkInfo() as $checkup){
                         UploadReport::firstOrCreate(
                             ['checkup_id' => $checkup->id]);
-
+                        Session::flash('issue', true);
                     }
-                    Session::flash('issue', true);
                 }
             }
             else{
