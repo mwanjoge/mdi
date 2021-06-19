@@ -21,6 +21,8 @@
     <link href="{{ asset('bootstrap-5/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome-5/css/all.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -167,7 +169,16 @@
         </main>
     </div>
 
+
     <script type="text/javascript" src="{{asset('bootstrap-5/js/jquery-3.6.js')}}"></script>
     <script type="text/javascript" src="{{asset('bootstrap-5/js/bootstrap.bundle.js')}}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 </body>
 </html>

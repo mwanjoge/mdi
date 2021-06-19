@@ -28,7 +28,7 @@
                             {{ session('status') }}
                         </div>
                     @endif--}}
-                    <table class="table table-sm table-striped">
+                    <table class="table table-sm table-striped" id="myTable">
                         <thead>
                             <tr>
                                 <th>Name</th>
