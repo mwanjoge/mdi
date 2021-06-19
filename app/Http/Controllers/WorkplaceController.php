@@ -62,8 +62,9 @@ class WorkplaceController extends Controller
         /*$pdf = PDF::loadView('workplace._report_tamplete');
         return $pdf->download('data.pdf');*/
         /*return Excel::download(new CheckupExport, 'checkups.pdf');*/
+        $workplace = WorkPlace::find($id);
         $reports = Checkup::where('work_place_id',$id)->get();
-        return view('workplace.workplace_report',compact('reports'));
+        return view('workplace.workplace_report',compact('reports','workplace'));
     }
 
     /**

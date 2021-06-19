@@ -5,13 +5,15 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('partials.menu')
-                <div class="btn-group float-end" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employee-create">
+                <div class="btn-group float-end mb-1" role="group" aria-label="Basic example">
+                    @include('partials._back_btn')
+                    <a class="btn btn-primary">
                         <i class="fa fa-check"></i>
                         Mark As Seen
-                    </button>
+                    </a>
                 </div>
-
+            </div>
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         Employee who are checked before

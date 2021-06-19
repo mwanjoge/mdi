@@ -5,6 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('partials.menu')
+                @include('partials._back_btn')
                 @include('partials._checkup_modal')
                 <div class="card">
                     <div class="card-header">
@@ -50,10 +51,10 @@
                         <i class="fa fa-upload"></i>
                         Upload
                     </button>--}}
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkups-create">
+                    {{--<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkups-create">
                         <i class="fa fa-plus"></i>
                         Create new
-                    </button>
+                    </button>--}}
                 </div>
                 <table class="table table-sm table-striped">
                     <thead>

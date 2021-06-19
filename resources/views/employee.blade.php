@@ -5,6 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('partials.menu')
+                @include('partials._back_btn')
                 @include('partials._employee_create_modal')
                 @include('partials._employee_upload_modal')
                 <div class="btn-group float-end" role="group" aria-label="Basic example">

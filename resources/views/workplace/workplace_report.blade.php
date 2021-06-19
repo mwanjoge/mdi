@@ -5,13 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('partials.menu')
-                <p>
-                    <span class="">
-                        <a class="btn btn-primary mb-1" onclick="printCont('printr')">
-                            <i class="fa fa-print"></i>
-                            print</a>
-                    </span>
-                </p>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    @include('partials._back_btn')
+                    <a class="btn btn-primary mb-1" onclick="printCont('printr')">
+                        <i class="fa fa-print"></i>
+                        Print
+                    </a>
+                </div>
                 <div class="card">
                     <div class="card-body" id="printr">
                         <table class="table">
@@ -45,7 +45,7 @@
                                     </tr>
                                     <tr>
                                         <th>WORK PLACE</th>
-                                        <td>ALLIANCE LTD</td>
+                                        <td>{{$workplace->name}}</td>
                                     </tr>
                                     <tr>
                                         <th>TYPE OF EXAM</th>

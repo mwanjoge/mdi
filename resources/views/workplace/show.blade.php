@@ -5,6 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('partials.menu')
+                @include('partials._back_btn')
                 <div class="card">
                     <div class="card-header">
                         {{$workplace->name}}
@@ -47,14 +48,14 @@
                 @include('partials._employee_create_modal')
                 @include('partials._employee_upload_modal')
                 <div class="btn-group float-end" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#employee-upload">
+                    {{--<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#employee-upload">
                         <i class="fa fa-upload"></i>
                         Upload
-                    </button>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#employee-create">
-                        <i class="fa fa-plus"></i>
-                        Create new
-                    </button>
+                    </button>--}}
+                    <a class="btn btn-primary btn-sm" href="{{route('workplace.report',$workplace->id)}}">
+                        <i class="fa fa-file-pdf"></i>
+                        View Report
+                    </a>
                 </div>
                 <table class="table table-sm table-striped">
                     <thead>
