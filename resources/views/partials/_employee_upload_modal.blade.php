@@ -10,12 +10,12 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         @csrf
-                        <input class="form-control" type="file" name="upload">
+                        <input class="form-control" type="file" name="upload" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Upload  File</button>
                 </div>
             </form>
         </div>
