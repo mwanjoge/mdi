@@ -71,20 +71,34 @@
                                     </li>
                                 @endif
                             @else
+                            <li class="pr-4">
+                             {{-- {{ Auth::user()->name }} --}}
+                            </li>
+                            <li class="nav-item">
+                                    <form action="{{ route('logout') }}" method="POST" class="d-none pr-3 pl-3">
+                                        @csrf
+                                        @method('post')
+                                        
+                                    </form>
+                                    <a href="{{route('app.logout')}}" class="btn btn-sm btn-danger">logout</a>
+                                </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
+                                
+                                {{-- <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                   
+                                </a> --}}
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li>
-                                        <a href="{{ route('logout') }}" class="dropdown-item"
+                                    <li class="">
+                                        <a href="{{route('app.logout')}}" class="btn btn-sm btn-danger">logout</a>
+                                        {{-- <a href="{{ route('logout') }}" class="dropdown-item"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        </a> --}}
+                                        {{-- <form action="{{ route('logout') }}" method="POST" class="d-none pr-3 pl-3">
                                             @csrf
-                                        </form>
+                                            <input type="submit" class="btn btn-sm btn-danger" value="logout">
+                                        </form> --}}
                                     </li>
                                     {{--<li><a class="dropdown-item" href="#">Another action</a></li>
                                     <li><hr class="dropdown-divider"></li>

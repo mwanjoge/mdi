@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('app.logout');
 Route::resource('employee',EmployeeControlle::class);
 Route::resource('workplace',WorkplaceController::class);
 Route::resource('checkup',CheckupController::class);
