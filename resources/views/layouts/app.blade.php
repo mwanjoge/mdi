@@ -27,7 +27,7 @@
 <body>
     <div id="app">
         @include('sweetalert::alert')
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top py-1">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">{{ config('app.name', 'Laravel') }}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,14 +78,14 @@
                                     <form action="{{ route('logout') }}" method="POST" class="d-none pr-3 pl-3">
                                         @csrf
                                         @method('post')
-                                        
+
                                     </form>
                                     <a href="{{route('app.logout')}}" class="btn btn-sm btn-danger">logout</a>
                                 </li>
                             <li class="nav-item dropdown">
-                                
+
                                 {{-- <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   
+
                                 </a> --}}
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                     <li class="">
@@ -167,7 +167,7 @@
                 </div>
             </div>
         </nav>--}}
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-md-1">
                     <img src="{{asset('img/logo.png')}}" style="height: 65px;">
@@ -186,8 +186,10 @@
 
     <script type="text/javascript" src="{{asset('bootstrap-5/js/jquery-3.6.js')}}"></script>
     <script type="text/javascript" src="{{asset('bootstrap-5/js/bootstrap.bundle.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bootstrap-5/js/bootstrap.js')}}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
 
     <script>
         $(document).ready( function () {

@@ -20,6 +20,7 @@ class CreateEmployeeTable extends Migration
             $table->string('gender');
             $table->timestamp('birthday')->nullable();
             $table->string('nationality')->nullable();
+            $table->string('nationalID')->nullable();
             $table->timestamp('entryDate')->default(now());
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

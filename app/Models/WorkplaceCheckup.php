@@ -5,24 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Checkup extends Model
+class WorkplaceCheckup extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'employee_id','work_place_id','workplace_checkup_id','checkupDate','leader','type','status'
+        'work_place_id','checkup_at','submited_at','type','total_employee','total_checked'
     ];
 
     protected $casts = [
-        'checkupDate' => 'date'
+        'checkup_at' => 'date'
     ];
 
     public function workPlace(){
         return $this->belongsTo(WorkPlace::class);
-    }
-
-    public function employee(){
-        return $this->belongsTo(Employee::class);
     }
 
     public function checkupReports(){

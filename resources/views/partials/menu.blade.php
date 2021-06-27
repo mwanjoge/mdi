@@ -16,4 +16,8 @@
         <i class="fa fa-medkit"></i>
         Checkups
     </a>
+    <a class="btn {{Request::is('settings*')? 'btn-primary':'btn-secondary'}}" href="{{route('settings.index')}}">
+        <i class="fa fa-cogs"></i>
+        Settings
+    </a>
 </div>

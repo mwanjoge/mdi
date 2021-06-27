@@ -76,6 +76,10 @@ class WorkplaceController extends Controller
     public function show($id)
     {
         $workplace = WorkplaceServices::getWorkplaceById($id);
+        if(!$workplace){
+            Alert::warning('Workplace Not Found');
+            return redirect()->route('workplace.index');
+        }
         return view('workplace.show',compact('workplace'));
     }
 

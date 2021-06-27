@@ -16,9 +16,12 @@ class CreateCheckupReportTable extends Migration
         Schema::create('checkup_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('checkup_id');
+            $table->foreignId('workplace_checkup_id');
             $table->foreignId('employee_id');
-            $table->string('disease');
-            $table->boolean('isSick')->default(false);
+            $table->foreignId('disease_id');
+            $table->boolean('hasIssue')->default(false);
+            $table->string('results')->nullable();
+            $table->string('descriptions')->nullable();
             $table->timestamps();
         });
     }

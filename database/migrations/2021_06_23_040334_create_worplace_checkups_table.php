@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCheckupTable extends Migration
+class CreateWorplaceCheckupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCheckupTable extends Migration
      */
     public function up()
     {
-        Schema::create('checkups', function (Blueprint $table) {
+        Schema::create('workplace_checkups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id');
             $table->foreignId('work_place_id');
-            $table->foreignId('workplace_checkup_id');
-            $table->timestamp('checkupDate');
-            $table->string('leader')->nullable();
+            $table->timestamp('checkup_at')->default(now());
+            $table->timestamp('submited_at')->nullable();
+            $table->integer('total_employee');
+            $table->integer('total_checked')->default(0);
             $table->string('type');
-            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +33,6 @@ class CreateCheckupTable extends Migration
      */
     public function down()
     {
-        Schema::drop('checkups');
+        Schema::dropIfExists('workplace_checkups');
     }
 }

@@ -22,4 +22,7 @@ class WorkPlace extends Model
     public function checkups(){
         return $this->hasMany(Checkup::class);
     }
+    public function workplaceCheckups(){
+        return $this->hasMany(WorkplaceCheckup::class);
+    }
 }

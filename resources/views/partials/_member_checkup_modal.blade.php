@@ -1,10 +1,10 @@
 <!-- Modal -->
-<div class="modal fade" id="employee-checkups-create{{$employee->id}}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="employee-checkups-create{{$checkup->employee->id}}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    <i class="fa fa-stethoscope"></i> Make Checkups on {{$employee->name}}</h5>
+                    <i class="fa fa-stethoscope"></i> Make Checkups on {{$checkup->employee->name}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="post" action="{{route('checkup.store')}}">
@@ -15,14 +15,14 @@
                         <option readonly="pre-entry">Pre Entry</option>
                         <option readonly="post-entry">Post Entry</option>
                     </select>
-                    <input type="hidden" name="employee" value="{{$employee->id}}">
+                    <input type="hidden" name="employee" value="{{$checkup->employee->id}}">
                     <input type="hidden" name="workplace" value="{{$workplace->id}}">
 
-                            {{--Blood Pressure<br>
+                            Blood Pressure<br>
                             <input type="hidden" value="blood pressure" name="disease[]" class="form-check">
                             <input type="radio"  value="1" name="results[]" class=""> Yes
                             <input type="radio"  value="0" name="results[]" class=""> No
-<hr>
+                        <hr>
                             Aging<br>
                             <input type="hidden" value="aging" name="disease[]" class="form-check">
                             <input type="radio" value="1" name="results[]" class=""> Yes
@@ -36,7 +36,7 @@
                             Deabetes<br>
                             <input type="hidden" value="deabetes" name="disease[]" class="form-check">
                             <input type="radio" value="1" name="results[]" class=""> Yes
-                            <input type="radio" value="o" name="results[]" class=""> No--}}
+                            <input type="radio" value="o" name="results[]" class=""> No
 
                             <select name="status" class="form-control">
                                 <option readonly="true">Fitness Stutus</option>
