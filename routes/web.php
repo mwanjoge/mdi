@@ -32,3 +32,5 @@ Route::get('report/results/{id}/{results}',[CheckupController::class,'updateResu
 Route::post('employee/upload',[EmployeeControlle::class,'upload'])->name('employee.upload');
 Route::get('workplace/report/{id}',[WorkplaceController::class,'report'])->name('workplace.report');
 Route::get('settings',[SettingsController::class,'index'])->name('settings.index');
+Route::get('disease/delete/{id}',[SettingsController::class,'diseaseDelete'])->name('disease.delete');
+Route::post('disease/store',[SettingsController::class,'diseaseStore'])->name('disease.store');

@@ -106,7 +106,7 @@ class CheckupController extends Controller
                     'workplace_checkup_id' => $workplaceCheck->id,
                     'checkupDate' =>now(),
                     'type' => $request->type,
-                    'status' => 'not checke',
+                    'status' => 'not checked',
                 ]);
                 foreach(Disease::all() as $disease){
                     CheckupReport::create([

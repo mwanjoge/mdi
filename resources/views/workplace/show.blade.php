@@ -87,10 +87,10 @@
                                     <td>{{$checkup->employee->name}}</td>
                                     <td>{{$checkup->employee->gender}}</td>
                                     <td>{{$checkup->employee->nationality}}</td>
-                                    <td>{{$checkup->employee->contractType}}</td>
+                                    <td class="text-capitalize">{{$checkup->employee->contractType}}</td>
                                     <td>{{$checkup->type}}</td>
                                     <td>{{$checkup->checkupDate->format('d M Y')}}</td>
-                                    <td class="{{$checkup->status === 'not checked'? 'bg-success text-white':'bg-warning'}}">
+                                    <td class="text-uppercase {{$checkup->status === 'not checked'? 'bg-warning text-white':'bg-success text-white'}}">
                                         {{$checkup->status }}</td>
                                     <td class="">
                                         @include('partials._member_checkup_modal')

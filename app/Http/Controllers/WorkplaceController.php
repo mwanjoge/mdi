@@ -80,6 +80,7 @@ class WorkplaceController extends Controller
             Alert::warning('Workplace Not Found');
             return redirect()->route('workplace.index');
         }
+        //return $workplace->checkupReports;
         return view('workplace.show',compact('workplace'));
     }
 
