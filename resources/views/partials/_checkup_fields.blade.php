@@ -19,8 +19,8 @@
                 </td>
                 @endforeach
                 <td>
-                    <select name="status" class="form-control checkup-status" data-id="{{$report->checkup->id}}" id="{{$report->checkup->id}}">
-                        <option value="{{$report->checkup->status}}">{{$report->checkup->status}}</option>
+                    <select name="status" class="form-control checkup-status" data-id="{{$employee->id}}" id="{{$employee->id}}">
+                        {{--<option value="{{$employee->checkups->last()->status}}">{{$employee->checkups->last()->status}}</option>--}}
                         <option value="fit">Fit</option>
                         <option value="not fit">Not Fit</option>
                         <option value="fit with precautions">Fit With Precautions</option>

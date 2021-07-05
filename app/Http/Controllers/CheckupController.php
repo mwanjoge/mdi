@@ -90,7 +90,7 @@ class CheckupController extends Controller
     public function workplaceCheckup(Request $request){
         $workplace = WorkPlace::find($request->workplace);
         $employees = CheckupServices::getUnCheckedEmployeeByTypePlace($request->type,$request->workplace);
-        if($employees){
+        if(count($employees) > 0){
             $workplaceCheck = new WorkplaceCheckup([
                 'work_place_id' => $request->workplace,
                 'checkup_at' => $request->checkup_at,
@@ -117,8 +117,7 @@ class CheckupController extends Controller
                     ]);
                 }
             }
-            $reports = CheckupReport::where('checkup_id', $checkup->id,)
-                ->where('workplace_checkup_id',$workplaceCheck->id,)->get();
+            $reports = CheckupReport::where('workplace_checkup_id',$workplaceCheck->id)->get();
 
         Alert::success('Work Place Checkup Created');
         return redirect()->back();
@@ -142,6 +141,7 @@ class CheckupController extends Controller
             $result->hasIssue = true;
             $result->checkup->status = 'checked';
             $result->checkup->save();
+
         }
         $result->save();
         return $result;
@@ -149,7 +149,13 @@ class CheckupController extends Controller
 
     public function updateStatus($id,$status){
         $checkup = Checkup::find($id);
+        //return $checkup->workPlaceCheckup;
         $checkup->status = $status;
+        if(!$checkup->isChecked){
+            $checkup->isChecked = true;
+            $checkup->workplaceCheckup->total_checked +=1;
+            $checkup->workplaceCheckup->save();
+        }
         $checkup->save();
         return $checkup;
     }

@@ -10,7 +10,7 @@ class Checkup extends Model
     use HasFactory;
 
     protected $fillable = [
-        'employee_id','work_place_id','workplace_checkup_id','checkupDate','leader','type','status'
+        'employee_id','work_place_id','workplace_checkup_id','checkupDate','leader','type','status','isChecked'
     ];
 
     protected $casts = [
@@ -27,5 +27,9 @@ class Checkup extends Model
 
     public function checkupReports(){
         return $this->hasMany(CheckupReport::class);
+    }
+
+    public function workplaceCheckup(){
+        return $this->belongsTo(WorkplaceCheckup::class);
     }
 }

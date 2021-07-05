@@ -22,6 +22,7 @@ class CreateCheckupTable extends Migration
             $table->string('leader')->nullable();
             $table->string('type');
             $table->string('status');
+            $table->boolean('isChecked')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
