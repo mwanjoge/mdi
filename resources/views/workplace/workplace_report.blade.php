@@ -45,11 +45,11 @@
                                     </tr>
                                     <tr>
                                         <th>WORK PLACE</th>
-                                        <td>{{$workplace->name}}</td>
+                                        <td>{{$workplace->workplace->name}}</td>
                                     </tr>
                                     <tr>
                                         <th>TYPE OF EXAM</th>
-                                        <td>PRE - EMPLOYMENT</td>
+                                        <td class="text-uppercase">{{$workplace->type}}</td>
                                     </tr>
                                     <tr>
                                         <th>SUBMITTED BY</th>
@@ -82,6 +82,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="">
+                                    <p>PREPARED BY</p>
+                                    <p>............................</p>
+                                    <p>DR S.J NYUMBA</p>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -6,13 +6,13 @@
             <div class="col-md-12">
                 @include('partials.menu')
                 @include('partials._back_btn')
-                @include('partials._checkup_modal')
-                <div class="card">
+                {{--@include('partials._checkup_modal')--}}
+                {{--<div class="card">
                     <div class="card-header">
                         Summary
                     </div>
                     <div class="card-body">
-                        {{--<h6>
+                        --}}{{--<h6>
                             {{$workplace->location}}
                             <span class="float-end">
                                 {{$workplace->address}}
@@ -27,9 +27,9 @@
                             <span class="badge bg-danger rounded-pill p-2" style="font-size: 15px;">
                                 {{$workplace->status}}
                             </span>
-                        @endif--}}
+                        @endif--}}{{--
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
         {{--<div class="row mt-2">
@@ -56,7 +56,7 @@
                         Create new
                     </button>--}}
                 </div>
-                <table class="table table-sm table-striped">
+                <table class="table table-sm table-striped" id="myTable">
                     <thead>
                     <tr>
                         <th>Full Name</th>

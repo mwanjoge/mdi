@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\CheckupExport;
 use App\Models\Checkup;
 use App\Models\WorkPlace;
+use App\Models\WorkplaceCheckup;
 use App\Services\WorkplaceServices;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
@@ -62,9 +63,17 @@ class WorkplaceController extends Controller
         /*$pdf = PDF::loadView('workplace._report_tamplete');
         return $pdf->download('data.pdf');*/
         /*return Excel::download(new CheckupExport, 'checkups.pdf');*/
-        $workplace = WorkPlace::find($id);
-        $reports = Checkup::where('work_place_id',$id)->get();
+        $workplace = WorkplaceCheckup::find($id);
+        $reports = Checkup::where('workplace_checkup_id',$id)->get();
         return view('workplace.workplace_report',compact('reports','workplace'));
+    }
+    public function reportLater($id){
+        /*$pdf = PDF::loadView('workplace._report_tamplete');
+        return $pdf->download('data.pdf');*/
+        /*return Excel::download(new CheckupExport, 'checkups.pdf');*/
+        $workplace = WorkplaceCheckup::find($id);
+        $reports = Checkup::where('workplace_checkup_id',$id)->get();
+        return view('workplace.workplace_report_leter',compact('reports','workplace'));
     }
 
     /**
@@ -73,15 +82,31 @@ class WorkplaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$workplaceCheckupId = null)
     {
+       return $this->workPlaceQuery($id,$workplaceCheckupId );
+    }
+
+    public function getWorkplaceCheckup($id,$workplaceCheckupId){
+        return $this->workPlaceQuery($id,$workplaceCheckupId );
+    }
+
+    public function workPlaceQuery($id,$workplaceCheckupId ){
         $workplace = WorkplaceServices::getWorkplaceById($id);
         if(!$workplace){
             Alert::warning('Workplace Not Found');
             return redirect()->route('workplace.index');
         }
-        //return $workplace->checkupReports;
-        return view('workplace.show',compact('workplace'));
+        if($workplaceCheckupId === null){
+            $workplaceCheckup = $workplace->workplaceCheckups->last();
+            $workplaceCheckups = Checkup::where('workplace_checkup_id',$workplace->workplaceCheckups->last()->id)->get();
+        }
+        else{
+            $workplaceCheckup = WorkplaceCheckup::find($workplaceCheckupId);
+            $workplaceCheckups = Checkup::where('workplace_checkup_id',$workplaceCheckupId)->get();
+        }
+        //return $workplaceCheckup;
+        return view('workplace.show',compact('workplace','workplaceCheckups','workplaceCheckup'));
     }
 
     /**

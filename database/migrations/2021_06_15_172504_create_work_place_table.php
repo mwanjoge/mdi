@@ -18,6 +18,7 @@ class CreateWorkPlaceTable extends Migration
             $table->string('name');
             $table->string('location')->nullable();
             $table->string('address')->nullable();
+            $table->string('reg')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
             $table->softDeletes();

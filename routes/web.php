@@ -19,18 +19,19 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-
+Route::get('workplace/results/{id}',[WorkplaceController::class,'report'])->name('workplace.results');
+Route::get('workplace/report/{id}',[WorkplaceController::class,'reportLater'])->name('workplace.report');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('app.logout');
 Route::resource('employee',EmployeeControlle::class);
 Route::resource('workplace',WorkplaceController::class);
+Route::get('workplace/{id}/{checkup}',[WorkplaceController::class, 'getWorkplaceCheckup'])->name('workplace.show');
 Route::resource('checkup',CheckupController::class);
 Route::post('workplace/checkup',[CheckupController::class,'workplaceCheckup'])->name('workplace.checkup');
 Route::get('results/toggle/{id}',[CheckupController::class,'toggleResults'])->name('results.toggle');
 Route::get('checkup/status/{id}/{status}',[CheckupController::class,'updateStatus'])->name('checkup.status');
 Route::get('report/results/{id}/{results}',[CheckupController::class,'updateResults'])->name('checkup.results');
 Route::post('employee/upload',[EmployeeControlle::class,'upload'])->name('employee.upload');
-Route::get('workplace/report/{id}',[WorkplaceController::class,'report'])->name('workplace.report');
 Route::get('settings',[SettingsController::class,'index'])->name('settings.index');
 Route::get('disease/delete/{id}',[SettingsController::class,'diseaseDelete'])->name('disease.delete');
 Route::post('disease/store',[SettingsController::class,'diseaseStore'])->name('disease.store');

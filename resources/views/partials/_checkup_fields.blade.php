@@ -1,15 +1,15 @@
 <table class="table table-sm">
 
         <tbody>
-            @foreach($workplaceCheckup->workPlace->employees as $employee)
+            @foreach($placeCheckup->checkups as $checkup)
             <tr>
                 <th colspan="5">
-                    {{$employee->name}}
+                    {{$checkup->employee->name}}
                 </th>
             </tr>
             <tr>
-                <input type="hidden" name="employee[]" value="{{$employee->id}}">
-                @foreach ($workplaceCheckup->checkupReports->where('employee_id',$employee->id) as $report)
+                <input type="hidden" name="employee[]" value="{{$checkup->employee->id}}">
+                @foreach ($checkup->checkupReports as $report)
                 <td>
                     <label>{{$report->disease->name}}</label>
                     <input type="hidden" value="blood pressure" name="disease[]" class="form-check">
@@ -19,7 +19,7 @@
                 </td>
                 @endforeach
                 <td>
-                    <select name="status" class="form-control checkup-status" data-id="{{$employee->id}}" id="{{$employee->id}}">
+                    <select name="status" class="form-control checkup-status" data-id="{{$checkup->id}}" id="{{$checkup->id}}">
                         {{--<option value="{{$employee->checkups->last()->status}}">{{$employee->checkups->last()->status}}</option>--}}
                         <option value="fit">Fit</option>
                         <option value="not fit">Not Fit</option>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('partials.menu')
@@ -68,6 +68,13 @@
                   </ul>
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <p class="text-uppercase">
+                            {{$workplaceCheckup->checkup_at->format('d M Y')}}
+                            <span class="float-end">
+                                {{$workplaceCheckup->type}}
+                            </span>
+                        </p>
+                        <hr>
                         <table class="table table-sm table-striped" id="myTable">
                             <thead>
                             <tr>
@@ -82,7 +89,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($workplace->checkups as $checkup)
+                            @foreach($workplaceCheckups as $checkup)
                                 <tr>
                                     <td>{{$checkup->employee->name}}</td>
                                     <td>{{$checkup->employee->gender}}</td>
@@ -121,10 +128,10 @@
                                 <i class="fa fa-upload"></i>
                                 Upload
                             </button>--}}
-                            <a class="btn btn-primary btn-sm" href="{{route('workplace.report',$workplace->id)}}">
+                            {{--<a class="btn btn-primary btn-sm" href="{{route('workplace.results',$workplace->id)}}">
                                 <i class="fa fa-file-pdf"></i>
                                 View Report
-                            </a>
+                            </a>--}}
                         </div>
                         <table class="table table-sm table-striped" id="myTable">
                             <thead>
@@ -187,24 +194,41 @@
                 <hr>
                 <table class="table table-striped">
                     <tbody>
-                        @foreach ($workplace->workplaceCheckups as $workplaceCheckup)
+                        @foreach ($workplace->workplaceCheckups as $placeCheckup)
                             <tr>
                                 <td>
                                     @include('partials._checkup_modal')
-                                    <a href="#" class="text-black">
-                                        <p class="text-black">
-                                            <strong class="mb-0">Date: {{$workplaceCheckup->checkup_at->format('d M Y')}}
-                                            <span class="float-end">{{$workplaceCheckup->type}} </span>
-                                            </strong>
-                                            <hr class="mb-0 mt-0">
-                                            {{$workplaceCheckup->total_employee}} employees
-                                            <span class="float-end">{{$workplaceCheckup->total_checked}} checked</span>
-                                        </p>
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#checkups-attend{{$workplaceCheckup->id}}">
-                                            <i class="fa fa-strethoscope"></i>
-                                            attend
-                                        </button>-
-                                    </a>
+                                    {{--<a href="#" class="text-black">--}}
+                                        <div class="{{Request::is('workplace/'.$workplace->id.'/'.$placeCheckup->id) ? 'btn btn-primary d-block' : ''}}">
+                                            <p class="text-black">
+                                                <strong class="mb-0">
+                                                    <span class="float-start">Date: {{$placeCheckup->checkup_at->format('d M Y')}} </span>
+                                                    <span class="float-end">{{$placeCheckup->type}} </span>
+                                                </strong><br>
+                                            <hr class="mb-0 mt-0" style="width: 100%">
+                                            <span class="float-start"> {{$placeCheckup->total_employee}} employees </span>
+                                            <span class="float-end">{{$placeCheckup->total_checked}} checked</span>
+                                            </p>
+                                            <span class="float-start">
+                                                <a href="{{url('workplace/report/'.$placeCheckup->id)}}" style="text-decoration: none;" class="m-1" >
+                                                    <i class="fa fa-file-word"></i>
+                                                    Report
+                                                </a>
+                                                <a href="{{url('workplace/results/'.$placeCheckup->id)}}" style="text-decoration: none;" class="m-1">
+                                                    <i class="fa fa-chart-line"> </i>
+                                                    Results
+                                                </a>
+                                                <a href="{{route('workplace.show',[$workplace->id,$placeCheckup->id])}}" style="text-decoration: none;" class="m-1">
+                                                    <i class="fa fa-long-arrow-alt-left"></i>
+                                                    Show
+                                                </a>
+                                                <a href="javascript:void(0)" style="text-decoration: none;" class="m-1" data-bs-toggle="modal" data-bs-target="#checkups-attend{{$placeCheckup->id}}">
+                                                    <i class="fa fa-user-md"> </i>
+                                                    Attend
+                                                </a>
+                                            </span>
+                                        </div>
+                                    {{--</a>--}}
                                 </td>
                             </tr>
                         @endforeach

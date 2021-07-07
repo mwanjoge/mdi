@@ -23,4 +23,7 @@ class WorkplaceCheckup extends Model
     public function checkupReports(){
         return $this->hasMany(CheckupReport::class);
     }
+    public function checkups(){
+        return $this->hasMany(Checkup::class);
+    }
 }
