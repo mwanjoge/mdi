@@ -1,4 +1,4 @@
-@extends('errors::minimal')
+@extends('errors::illustrated-layout')
 
 @section('title', __('We will be Back Soon')){{--
 @section('code', '503') --}}
