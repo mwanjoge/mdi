@@ -25,7 +25,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('app.logout');
 Route::resource('employee',EmployeeControlle::class);
 Route::resource('workplace',WorkplaceController::class);
-Route::get('workplace/{id}/{checkup}',[WorkplaceController::class, 'getWorkplaceCheckup'])->name('workplace.show');
+Route::get('workplace/{id}/{checkup?}',[WorkplaceController::class, 'getWorkplaceCheckup'])->name('workplace.show');
 Route::resource('checkup',CheckupController::class);
 Route::post('workplace/checkup',[CheckupController::class,'workplaceCheckup'])->name('workplace.checkup');
 Route::get('results/toggle/{id}',[CheckupController::class,'toggleResults'])->name('results.toggle');

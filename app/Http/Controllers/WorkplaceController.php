@@ -84,7 +84,7 @@ class WorkplaceController extends Controller
      */
     public function show($id,$workplaceCheckupId = null)
     {
-       return $this->workPlaceQuery($id,$workplaceCheckupId );
+        return $this->workPlaceQuery($id,$workplaceCheckupId );
     }
 
     public function getWorkplaceCheckup($id,$workplaceCheckupId){
@@ -93,13 +93,16 @@ class WorkplaceController extends Controller
 
     public function workPlaceQuery($id,$workplaceCheckupId ){
         $workplace = WorkplaceServices::getWorkplaceById($id);
+        $workplaceCheckups = null;
         if(!$workplace){
             Alert::warning('Workplace Not Found');
             return redirect()->route('workplace.index');
         }
         if($workplaceCheckupId === null){
             $workplaceCheckup = $workplace->workplaceCheckups->last();
-            $workplaceCheckups = Checkup::where('workplace_checkup_id',$workplace->workplaceCheckups->last()->id)->get();
+            if($workplaceCheckup){
+                $workplaceCheckups = Checkup::where('workplace_checkup_id',$workplaceCheckup->id)->get();
+            }
         }
         else{
             $workplaceCheckup = WorkplaceCheckup::find($workplaceCheckupId);

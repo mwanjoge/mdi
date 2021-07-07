@@ -68,12 +68,14 @@
                   </ul>
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <p class="text-uppercase">
-                            {{$workplaceCheckup->checkup_at->format('d M Y')}}
-                            <span class="float-end">
+                        @isset($workplaceCheckup)
+                            <p class="text-uppercase">
+                                {{$workplaceCheckup->checkup_at->format('d M Y')}}
+                                <span class="float-end">
                                 {{$workplaceCheckup->type}}
                             </span>
-                        </p>
+                            </p>
+                        @endisset
                         <hr>
                         <table class="table table-sm table-striped" id="myTable">
                             <thead>
@@ -89,36 +91,38 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($workplaceCheckups as $checkup)
-                                <tr>
-                                    <td>{{$checkup->employee->name}}</td>
-                                    <td>{{$checkup->employee->gender}}</td>
-                                    <td>{{$checkup->employee->nationality}}</td>
-                                    <td class="text-capitalize">{{$checkup->employee->contractType}}</td>
-                                    <td>{{$checkup->type}}</td>
-                                    <td>{{$checkup->checkupDate->format('d M Y')}}</td>
-                                    <td class="text-uppercase {{$checkup->status === 'not checked'? 'bg-warning text-white':'bg-success text-white'}}">
-                                        {{$checkup->status }}</td>
-                                    <td class="">
-                                        @include('partials._member_checkup_modal')
-                                        <div class="dropup">
-                                        <a title="more" class="p-1" href="#"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#employee-checkups-create{{$checkup->employee->id}}">
-                                                    <i class="fa fa-user-md"></i> Checkup
+                            {{--@isset($workplaceCheckups)
+                                @foreach($workplaceCheckups as $checkup)
+                                    <tr>
+                                        <td>{{$checkup->employee->name}}</td>
+                                        <td>{{$checkup->employee->gender}}</td>
+                                        <td>{{$checkup->employee->nationality}}</td>
+                                        <td class="text-capitalize">{{$checkup->employee->contractType}}</td>
+                                        <td>{{$checkup->type}}</td>
+                                        <td>{{$checkup->checkupDate->format('d M Y')}}</td>
+                                        <td class="text-uppercase {{$checkup->status === 'not checked'? 'bg-warning text-white':'bg-success text-white'}}">
+                                            {{$checkup->status }}</td>
+                                        <td class="">
+                                            @include('partials._member_checkup_modal')
+                                            <div class="dropup">
+                                                <a title="more" class="p-1" href="#"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-v"></i>
                                                 </a>
-                                            </li>
-                                            {{--<li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
-                                        </ul>
-                                        </div>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#employee-checkups-create{{$checkup->employee->id}}">
+                                                            <i class="fa fa-user-md"></i> Checkup
+                                                        </a>
+                                                    </li>
+                                                    --}}{{--<li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>--}}{{--
+                                                </ul>
+                                            </div>
 
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endisset--}}
                             </tbody>
                         </table>
                     </div>
