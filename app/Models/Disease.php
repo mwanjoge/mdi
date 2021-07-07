@@ -11,4 +11,19 @@ class Disease extends Model
     protected $fillable = [
         'category','name'
     ];
+
+    public function checkupReports(){
+        return $this->hasMany(CheckupReport::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function($disease){
+            $disease->checkupReports->each(function ($report){
+                $report->delete();
+            });
+        });
+    }
+
 }

@@ -194,6 +194,7 @@
     <script>
         $(document).ready( function () {
             $('#myTable').DataTable();
+            $('.myTable').DataTable();
         } );
     </script>
 </body>

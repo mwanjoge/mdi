@@ -18,6 +18,7 @@ class CreateDiseasesTable extends Migration
             $table->string('category');
             $table->string('name');
             $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

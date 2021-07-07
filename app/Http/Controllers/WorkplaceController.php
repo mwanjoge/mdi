@@ -108,7 +108,7 @@ class WorkplaceController extends Controller
             $workplaceCheckup = WorkplaceCheckup::find($workplaceCheckupId);
             $workplaceCheckups = Checkup::where('workplace_checkup_id',$workplaceCheckupId)->get();
         }
-        //return $workplaceCheckup;
+        //return $workplaceCheckups;
         return view('workplace.show',compact('workplace','workplaceCheckups','workplaceCheckup'));
     }
 

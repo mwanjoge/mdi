@@ -59,7 +59,7 @@
                     <li class="nav-item" role="presentation">
                       <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
                           Employees
-                          <span class="badge bg-primary rounded-circle">28</span>
+                          <span class="badge bg-primary rounded-circle">{{count($workplace->employees)}}</span>
                         </button>
                     </li>
                     {{-- <li class="nav-item" role="presentation">
@@ -91,7 +91,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{--@isset($workplaceCheckups)
+                            @isset($workplaceCheckups)
                                 @foreach($workplaceCheckups as $checkup)
                                     <tr>
                                         <td>{{$checkup->employee->name}}</td>
@@ -114,15 +114,15 @@
                                                             <i class="fa fa-user-md"></i> Checkup
                                                         </a>
                                                     </li>
-                                                    --}}{{--<li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>--}}{{--
+                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                                                 </ul>
                                             </div>
 
                                         </td>
                                     </tr>
                                 @endforeach
-                            @endisset--}}
+                            @endisset
                             </tbody>
                         </table>
                     </div>
@@ -137,7 +137,7 @@
                                 View Report
                             </a>--}}
                         </div>
-                        <table class="table table-sm table-striped" id="myTable">
+                        <table class="table table-sm table-striped myTable" id="">
                             <thead>
                             <tr>
                                 <th>Full Name</th>
