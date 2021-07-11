@@ -12,6 +12,8 @@
                         Print
                     </a>
                 </div>
+                <h5>{{$workplace->workPlace->name.' FITNESS TO WORK MEDICAL EXAMINATION REPORT'}}</h5>
+                <hr>
                 <div class="card">
                     <div class="card-body" id="printr" style="font-size: 18px;">
                         <div class="text-center">
@@ -33,9 +35,9 @@
                                 Ref: No.MRG/NGU/33<br>
                                 Date: 14THJUNE, 2021<br>
                                 MANAGING DIRECTOR<br>
-                                ALLIANCE ONE TOBACCO (T) LTD<br>
-                                P.O BOX 1595<br>
-                                MOROGORO.<br>
+                                {{$workplace->workPlace->name}}<br>
+                                {{$workplace->workPlace->address}}<br>
+                                {{$workplace->workPlace->location}}<br>
                             </strong>
                         </div>
                         <div class="text-center">
@@ -46,10 +48,10 @@
                         </div>
                         <div class="">
                             Reference is made to the above captioned subject.
-                            Our medical inspectors conducted fitness to work medical examination to the workers at your workplace onJune 2021.
+                            Our medical inspectors conducted fitness to work medical examination to the workers at your workplace on {{$workplace->checkup_at->format('d M Y')}}.
 
                             Attached hereunder is a summary report for the statutory fitness to work
-                            Pre -employment medical examinations conducted on the site.
+                            {{$workplace->type}} medical examinations conducted on the site.
 
                             You are therefore required to take note and implement all recommendations raised by our medical inspectors for continued
                             compliance to OHS regulation, for the health and welfare of your workers and hence increased productivity.<br><br>
@@ -72,14 +74,14 @@
                                     <img class="" src="{{asset('img/logo.png')}}" style="height: 75px;"><br>
                                     <h3>
                                         <strong>
-                                            OCCUPATIONAL SAFETY AND HEALTH AUTHORITY (OSHA)<br>
+                                            OCCUPATIONAL SAFETY AND HEALTH AUTHORITY (OSHA)<br><br>
 
-                                            FITNESS TO WORK MEDICAL EXAMINATION REPORT<br><br>
-                                            WORKPLACE NAME: {{$workplace->workPlace->name}}<br>
-                                            REGISTRATION NUMBER: MOR/0029<br>
-                                            TOTAL NUMBER OF EMPLOYEES EXAMINED: 396<br>
+                                            FITNESS TO WORK MEDICAL EXAMINATION REPORT<br><br><br>
+                                            WORKPLACE NAME: {{$workplace->workPlace->name}}<br><br>
+                                            REGISTRATION NUMBER: {{$workplace->workPlace->reg}}<br><br>
+                                            TOTAL NUMBER OF EMPLOYEES EXAMINED: {{count($workplace->workPlace->employees)}}<br><br>
 
-                                            PHYSICAL ADDRESS: KINGOLWIRA - MOROGORO<br>
+                                            PHYSICAL ADDRESS: {{$workplace->workPlace->location}}<br><br>
                                         </strong>
                                     </h3>
                                 </div>
