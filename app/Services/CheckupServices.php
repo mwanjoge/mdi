@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Checkup;
+use App\Models\WorkplaceCheckup;
 use Illuminate\Support\Facades\DB;
 
 class CheckupServices
@@ -22,6 +23,9 @@ class CheckupServices
                      ->where('work_place_id',$place);
            })
            ->get();
+    }
+    public static function getAllWorkplaceCheckups(){
+        return WorkplaceCheckup::all();
     }
 
 }

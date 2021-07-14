@@ -202,6 +202,7 @@
                             <tr>
                                 <td>
                                     @include('partials._checkup_modal')
+                                    @include('checkup._submit_modal')
                                     {{--<a href="#" class="text-black">--}}
                                         <div class="{{Request::is('workplace/'.$workplace->id.'/'.$placeCheckup->id) ? 'btn btn-primary d-block' : ''}}">
                                             <p class="text-black">
@@ -229,6 +230,9 @@
                                                 <a href="javascript:void(0)" style="text-decoration: none;" class="m-1" data-bs-toggle="modal" data-bs-target="#checkups-attend{{$placeCheckup->id}}">
                                                     <i class="fa fa-user-md"> </i>
                                                     Attend
+                                                </a>
+                                                <a class="p-1" href="javascript:void(0)" data-bs-target="#submit-checkup-{{$placeCheckup->id}}" data-bs-toggle="modal" style="text-decoration: none;">
+                                                    <i class="fa fa-calendar-check"></i> submit
                                                 </a>
                                             </span>
                                         </div>

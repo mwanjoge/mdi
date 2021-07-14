@@ -31,7 +31,7 @@ class CheckupController extends Controller
      */
     public function index()
     {
-        $checkups = CheckupServices::getAllCheckups();
+        $checkups = CheckupServices::getAllWorkplaceCheckups();
         $employees = EmployeeServices::getAllEmployees();
         return view('checkup.index',compact('checkups','employees'));
     }

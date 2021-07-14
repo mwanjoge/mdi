@@ -43,8 +43,8 @@
             </div>
         </div>--}}
         <div class="row mt-2">
-            <div class="col-md-8">
-                <p>All Checkups</p>
+            <div class="col-md-12">
+                <p>All Workplace Checkups</p>
                 <hr>
                 <div class="btn-group float-end" role="group" aria-label="Basic example">
                     {{--<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#employee-upload">
@@ -59,29 +59,28 @@
                 <table class="table table-sm table-striped" id="myTable">
                     <thead>
                     <tr>
-                        <th>Full Name</th>
-                        <th>Gender</th>
-                        <th>Birth</th>
                         <th>Workplace</th>
-                        <th>Job</th>
-                        <th>Department</th>
-                        <th>Status</th>
+                        <th>Total Employees</th>
+                        <th>Checked Employees</th>
+                        <th>Checkup Type</th>
+                        <th>Checkup Date</th>
+                        <th>Submission Date</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($checkups as $checkup)
+                    @foreach($checkups as $placeCheckup)
                         <tr>
-                            <td>{{$checkup->employee->name}}</td>
-                            <td>{{$checkup->employee->gender}}</td>
-                            <td>{{$checkup->employee->birthday->format('d M Y')}}</td>
-                            <td>{{$checkup->workPlace->name}}</td>
-                            <td>{{$checkup->employee->jobTitle}}</td>
-                            <td>{{$checkup->employee->department}}</td>
-                            <td>{{$checkup->status}}</td>
+                            <td>{{$placeCheckup->workPlace->name}}</td>
+                            <td>{{$placeCheckup->total_employee}}</td>
+                            <td>{{$placeCheckup->total_checked}}</td>
+                            <td>{{$placeCheckup->type}}</td>
+                            <td>{{$placeCheckup->checkup_at->format('d M Y')}}</td>
+                            <td>{{$placeCheckup->submited_at !== null ? 'Submitted on '.$placeCheckup->submited_at->format('d M Y'):'Not Submitted'}}</td>
                             <td class="">
-                                <a title="more" class="p-1" href="{{route('checkup.show',$checkup->id)}}">
-                                    <i class="fa fa-ellipsis-v"></i>
+                                @include('checkup._submit_modal')
+                                <a class="p-1" href="javascript:void(0)" data-bs-target="#submit-checkup-{{$placeCheckup->id}}" data-bs-toggle="modal" style="text-decoration: none;">
+                                    <i class="fa fa-calendar-check"></i> submit
                                 </a>
                             </td>
                         </tr>
@@ -89,10 +88,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-4">
+            {{--<div class="col-md-4">
                 <p>Billing Information</p>
                 <hr>
-            </div>
+            </div>--}}
         </div>
     </div>
 @endsection

@@ -4,6 +4,7 @@ use App\Http\Controllers\CheckupController;
 use App\Http\Controllers\EmployeeControlle;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\WorkplaceController;
+use App\Http\Controllers\WorplaceCheckupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::get('workplace/results/{id}',[WorkplaceController::class,'report'])->name('workplace.results');
+Route::post('workplace/checkup/submit',[WorplaceCheckupController::class,'submit'])->name('workplace.checkup.submit');
 Route::get('workplace/report/{id}',[WorkplaceController::class,'reportLater'])->name('workplace.report');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('app.logout');

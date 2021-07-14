@@ -79,7 +79,7 @@
                                             FITNESS TO WORK MEDICAL EXAMINATION REPORT<br><br><br>
                                             WORKPLACE NAME: {{$workplace->workPlace->name}}<br><br>
                                             REGISTRATION NUMBER: {{$workplace->workPlace->reg}}<br><br>
-                                            TOTAL NUMBER OF EMPLOYEES EXAMINED: {{count($workplace->workPlace->employees)}}<br><br>
+                                            TOTAL NUMBER OF EMPLOYEES EXAMINED: {{$workplace->total_checked}}<br><br>
 
                                             PHYSICAL ADDRESS: {{$workplace->workPlace->location}}<br><br>
                                         </strong>

@@ -22,13 +22,7 @@
             <div class="col-md-12">
                 <div class="card mt-2">
                     <div class="card-header">{{ __('Employees') }}</div>
-
                     <div class="card-body">
-                        {{--@if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif--}}
                         <table class="table table-sm table-striped" id="myTable">
                             <thead>
                             <tr>
@@ -44,25 +38,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($employees as $employee)
-                                <tr>
-                                    <td>{{$employee->workPlace->name}}</td>
-                                    <td>{{$employee->name}}</td>
-                                    <td>{{$employee->gender}}</td>
-                                    <td>{{$employee->birthday->format('d M Y')}}</td>
-                                    <td>{{$employee->nationality}}</td>
-                                    <td>{{$employee->entryDate->format('d M Y')}}</td>
-                                    <td>{{$employee->email}}</td>
-                                    <td>{{$employee->phone}}</td>
-                                    <td>{{$employee->contractType}}</td>
-                                </tr>
-                            @endforeach
+                                @foreach($employees as $employee)
+                                    <tr>
+                                        <td>{{$employee->workPlace->name}}</td>
+                                        <td>{{$employee->name}}</td>
+                                        <td>{{$employee->gender}}</td>
+                                        <td>{{$employee->birthday->format('d M Y')}}</td>
+                                        <td>{{$employee->nationality}}</td>
+                                        <td>{{$employee->entryDate->format('d M Y')}}</td>
+                                        <td>{{$employee->email}}</td>
+                                        <td>{{$employee->phone}}</td>
+                                        <td>{{$employee->contractType}}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     </div>
 @endsection

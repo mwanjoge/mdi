@@ -13,7 +13,8 @@ class WorkplaceCheckup extends Model
     ];
 
     protected $casts = [
-        'checkup_at' => 'date'
+        'checkup_at' => 'date',
+        'submited_at' => 'date'
     ];
 
     public function workPlace(){
