@@ -63,30 +63,54 @@
                             For: CHIEF INSPECTOR
                         </div>
 
-                    </div>
-                </div>
-                <div class="card mt-2">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-10" style="border: solid 5px black;">
-                                <div class="text-center">
-                                    <img class="" src="{{asset('img/logo.png')}}" style="height: 75px;"><br>
-                                    <h3>
-                                        <strong>
-                                            OCCUPATIONAL SAFETY AND HEALTH AUTHORITY (OSHA)<br><br>
+                        <div class="" style="border: solid 5px black;">
+                            <div class="text-center">
+                                <img class="" src="{{asset('img/logo.png')}}" style="height: 75px;"><br>
+                                <h3>
+                                    <strong>
+                                        OCCUPATIONAL SAFETY AND HEALTH AUTHORITY (OSHA)<br><br>
 
-                                            FITNESS TO WORK MEDICAL EXAMINATION REPORT<br><br><br>
-                                            WORKPLACE NAME: {{$workplace->workPlace->name}}<br><br>
-                                            REGISTRATION NUMBER: {{$workplace->workPlace->reg}}<br><br>
-                                            TOTAL NUMBER OF EMPLOYEES EXAMINED: {{$workplace->total_checked}}<br><br>
+                                        FITNESS TO WORK MEDICAL EXAMINATION REPORT<br><br><br>
+                                        WORKPLACE NAME: {{$workplace->workPlace->name}}<br><br>
+                                        REGISTRATION NUMBER: {{$workplace->workPlace->reg}}<br><br>
+                                        TOTAL NUMBER OF EMPLOYEES EXAMINED: {{$workplace->total_checked}}<br><br>
 
-                                            PHYSICAL ADDRESS: {{$workplace->workPlace->location}}<br><br>
-                                        </strong>
-                                    </h3>
-                                </div>
+                                        PHYSICAL ADDRESS: {{$workplace->workPlace->location}}<br><br>
+                                    </strong>
+                                </h3>
                             </div>
-                            <div class="col-md-1"></div>
+                        </div>
+
+                        <div class="mt-2">
+                            <h3 class="text-uppercase">
+                                <strong>
+                                    {{$workplace->type}} MEDICAL EXAMINATION REPORT<br>
+                                    COMPANY NAME: {{$workplace->workPlace->name}}<br>
+
+                                    LOCATION:{{$workplace->workPlace->location}}
+                                </strong>
+                            </h3>
+                            <h4>
+                                1. Introduction
+                            </h4>
+                            Occupational safety and Health Authority (OSHA) is the Government agency enacted by
+                            law to oversee the implementation of OHS act no 5 of 2003 at all workplaces.
+                            In carrying out its regulatory functions OSHA carries out various statutory inspections
+                            including medical surveillance for the workers fitness to work. Periodic fitness to work medical
+                            examinations are conducted by qualified medical doctors from OSHA and where applicable
+                            by doctors who are accredited by the chief inspector.
+
+
+                            <h4>2. Activity summary</h4>
+                            <div class="">
+                                The activity comprised of consultation, general physical examination including
+                                weight and Height measurement for BMI (Body Mass Indices), Blood Pressure measurements,
+                                Eudiometry, and visual acuity testing.
+                            </div>
+                            <h4>3. Finding</h4>
+                            {{numberToWords($workplace->total_checked)}}({{$workplace->total_checked}}) workers of
+                            <span class="text-capitalize">{{$workplace->workPlace->name}}</span> were examined,
+                            {{$workplace->female}} women and {{$workplace->male}} men. All above 18 years, with few above 60 years.
                         </div>
                     </div>
                 </div>

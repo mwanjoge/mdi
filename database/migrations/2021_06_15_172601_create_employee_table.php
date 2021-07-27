@@ -18,7 +18,7 @@ class CreateEmployeeTable extends Migration
             $table->foreignId('work_place_id');
             $table->string('name');
             $table->string('gender');
-            $table->timestamp('birthday')->nullable();
+            $table->dateTime('birthday')->nullable();
             $table->string('nationality')->nullable();
             $table->string('nationalID')->nullable();
             $table->timestamp('entryDate')->default(now());

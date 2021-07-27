@@ -19,8 +19,11 @@ class CreateWorplaceCheckupsTable extends Migration
             $table->timestamp('checkup_at')->default(now());
             $table->timestamp('submited_at')->nullable();
             $table->integer('total_employee');
+            $table->integer('male')->default(0);
+            $table->integer('female')->default(0);
             $table->integer('total_checked')->default(0);
             $table->string('type');
+            $table->longText('letter_conclusion')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

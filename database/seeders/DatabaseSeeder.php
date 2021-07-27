@@ -37,6 +37,26 @@ class DatabaseSeeder extends Seeder
             [
                 'category' => 'Family History Diseases',
                 'name' => 'Sickle Cell Disease',
+            ],
+            [
+                'category' => 'Systemic Review',
+                'name' => 'Headache',
+            ],
+            [
+                'category' => 'Systemic Review',
+                'name' => 'malaise',
+            ],
+            [
+                'category' => 'Systemic Review',
+                'name' => 'gonorrhea',
+            ],
+            [
+                'category' => 'Past Medical History',
+                'name' => 'PMH',
+            ],
+            [
+                'category' => 'Body Mass Index',
+                'name' => 'BMI',
             ]
         ]);
         User::create([

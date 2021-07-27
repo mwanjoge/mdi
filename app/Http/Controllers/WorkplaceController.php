@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exports\CheckupExport;
 use App\Models\Checkup;
+use App\Models\Employee;
 use App\Models\WorkPlace;
 use App\Models\WorkplaceCheckup;
 use App\Services\WorkplaceServices;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -60,9 +62,6 @@ class WorkplaceController extends Controller
     }
 
     public function report($id){
-        /*$pdf = PDF::loadView('workplace._report_tamplete');
-        return $pdf->download('data.pdf');*/
-        /*return Excel::download(new CheckupExport, 'checkups.pdf');*/
         $workplace = WorkplaceCheckup::find($id);
         $reports = Checkup::where('workplace_checkup_id',$id)->get();
         return view('workplace.workplace_report',compact('reports','workplace'));
@@ -73,7 +72,15 @@ class WorkplaceController extends Controller
         /*return Excel::download(new CheckupExport, 'checkups.pdf');*/
         $workplace = WorkplaceCheckup::with('workPlace')->find($id);
         //return $workplace;
-        $reports = Checkup::where('workplace_checkup_id',$id)->get();
+        $reportsData = Checkup::select('checkups.*')
+            ->join('checkup_reports','checkup_reports.checkup_id','checkups.id')
+            ->join('employees','employees.id','=','checkup_reports.employee_id')
+            ->where('checkups.workplace_checkup_id',$id)
+            ->where('checkup_reports.workplace_checkup_id',$id);
+        $reports = $reportsData->get();
+        //return Employee::where('birthday', '<' , date('Y-m-d', strtotime('-60 years')))->get();
+        $greaterThanSixty = count($reportsData->where('employees.birthday','<' , date('Y-m-d h:m:s', strtotime('-60 years')))->get());
+        return $greaterThanSixty;
         return view('workplace.workplace_report_leter',compact('reports','workplace'));
     }
 
@@ -93,11 +100,12 @@ class WorkplaceController extends Controller
     }
 
     public function workPlaceQuery($id,$workplaceCheckupId ){
+        //return $id;
         $workplace = WorkplaceServices::getWorkplaceById($id);
         $workplaceCheckups = null;
         if(!$workplace){
             Alert::warning('Workplace Not Found');
-            return redirect()->route('workplace.index');
+            return back();
         }
         if($workplaceCheckupId === null){
             $workplaceCheckup = $workplace->workplaceCheckups->last();

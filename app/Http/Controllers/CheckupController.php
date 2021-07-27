@@ -96,6 +96,8 @@ class CheckupController extends Controller
                 'checkup_at' => $request->checkup_at,
                 'type' => $request->type,
                 'total_employee' => count($workplace->employees),
+                'female' => count(CheckupServices::getFemaleEmployeesCount($request->type,$request->workplace)),
+                'male' => count(CheckupServices::getMaleEmployeesCount($request->type,$request->workplace)),
             ]);
             $workplaceCheck->save();
 

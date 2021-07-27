@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::post('workplace/checkup/submit',[WorplaceCheckupController::class,'submit'])->name('workplace.checkup.submit');
 Route::get('workplace/report/{id}',[WorkplaceController::class,'reportLater'])->name('workplace.report');
+Route::get('workplace/results/{id}',[WorkplaceController::class,'report'])->name('workplace.report');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('app.logout');
 Route::resource('employee',EmployeeControlle::class);

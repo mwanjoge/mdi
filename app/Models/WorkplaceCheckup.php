@@ -9,7 +9,7 @@ class WorkplaceCheckup extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'work_place_id','checkup_at','submited_at','type','total_employee','total_checked'
+        'work_place_id','checkup_at','submited_at','type','total_employee','total_checked','male','female'
     ];
 
     protected $casts = [
