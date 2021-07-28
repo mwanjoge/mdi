@@ -33,8 +33,9 @@
                 <select name="status" class="form-control checkup-status" data-id="{{$checkup->id}}" id="{{$checkup->id}}">
                     <option value="">Health Status</option>
                     <option value="fit">Fit</option>
+                    <option value="fit">Fit On Followup</option>
                     <option value="not fit">Not Fit</option>
-                    <option value="fit with precautions">Fit With Precautions</option>
+                    <option value="fit with precautions">Fit With Restrictions</option>
                 </select>
             </td>
         </tr>
