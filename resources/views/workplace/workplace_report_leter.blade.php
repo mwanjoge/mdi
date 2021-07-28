@@ -7,7 +7,7 @@
                 @include('partials.menu')
                 <div class="btn-group" role="group" aria-label="Basic example">
                     @include('partials._back_btn')
-                    <a class="btn btn-primary mb-1" onclick="printCont('printr')">
+                    <a class="mb-1 btn btn-primary" onclick="printCont('printr')">
                         <i class="fa fa-print"></i>
                         Print
                     </a>
@@ -111,6 +111,154 @@
                             {{numberToWords($workplace->total_checked)}}({{$workplace->total_checked}}) workers of
                             <span class="text-capitalize">{{$workplace->workPlace->name}}</span> were examined,
                             {{$workplace->female}} women and {{$workplace->male}} men. All above 18 years, with few above 60 years.
+
+                            <h4 class="text-center mt-2">DISTRIBUTION OF WORKERS</h4>
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <th></th>
+                                    <th>Total</th>
+                                    <th>%</th>
+                                </tr>
+                                <tr>
+                                    <th>MALE</th>
+                                    <td>{{$workplace->male}}</td>
+                                    <td>
+                                        @php
+                                            $mp = number_format(getPercentage($workplace->male,$workplace->male+$workplace->female)).'%';
+                                        @endphp
+                                        <p class="alert-{{getPercentageStatusColor($mp)}} p-1 mb-0" style="width:{{$mp}}">
+                                            {{$mp}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>FEMALE</th>
+                                    <td>{{$workplace->female}}</td>
+                                    <td>
+                                        @php
+                                            $fp = number_format(getPercentage($workplace->female,$workplace->male+$workplace->female)).'%';
+                                        @endphp
+                                        <p class="alert-{{getPercentageStatusColor($fp)}} p-1 mb-0" style="width:{{$fp}}">
+                                            {{$fp}}
+                                        </p>
+                                    </td>
+                                </tr>    
+                            </table>
+
+                           <h4> 1. Family history summary.</h4>
+                            Seventeen (17) workersreported to have positive family history of diseases which run in families such as Hypertension, Diabetes mellitus, Asthma, Sickle Cell Disease, etc.   
+
+                            <h4 class="text-center mt-2">FAMILY HISTORY</h4>
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <th></th>
+                                    <th>Total</th>
+                                    <th>%</th>
+                                </tr>
+                                <tr>
+                                    <th>HISTORY OF FAMILY DISEASES</th>
+                                    <td>{{$workplace->male}}</td>
+                                    <td>
+                                        @php
+                                            $mp = number_format(getPercentage($workplace->male,$workplace->male+$workplace->female)).'%';
+                                        @endphp
+                                        <p class="alert-{{getPercentageStatusColor($mp)}} p-1 mb-0" style="width:{{$mp}}">
+                                            {{$mp}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>NON KNOWN HX FAMILY DISEASES</th>
+                                    <td>{{$workplace->female}}</td>
+                                    <td>
+                                        @php
+                                            $fp = number_format(getPercentage($workplace->female,$workplace->male+$workplace->female)).'%';
+                                        @endphp
+                                        <p class="alert-{{getPercentageStatusColor($fp)}} p-1 mb-0" style="width:{{$fp}}">
+                                            {{$fp}}
+                                        </p>
+                                    </td>
+                                </tr>    
+                            </table>  
+
+                            <h4>2. Summary from past medical history</h4>
+                            Fifteen(15) employees had significant positive past medical histories of differentillnesses and injuries however they are not occupational related.
+
+                            <h4>3. Summary from Systemic Review</h4>
+                            Eleven(11)workers had complaints such as headache, malaise, rhinorrhea etc. sixteen (16) had lower back pains, and majority had nooccupational related physical complaints.
+
+                            <h4>4. Summary from physical/general examination</h4>
+                            The following were observed.
+                            Eight (8) employeeshad Low body mass Index, while those with High body mass index were 51, Majority(337) were normal.
+
+                            <h4 class="text-center mt-2">DISTRIBUTION OF BODY MASS INDEX</h4>
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <th></th>
+                                    <th>Total</th>
+                                    <th>%</th>
+                                </tr>
+                                <tr>
+                                    <th>NORMAL</th>
+                                    <td>{{$workplace->male}}</td>
+                                    <td>
+                                        @php
+                                            $mp = number_format(getPercentage($workplace->male,$workplace->male+$workplace->female)).'%';
+                                        @endphp
+                                        <p class="alert-{{getPercentageStatusColor($mp)}} p-1 mb-0" style="width:{{$mp}}">
+                                            {{$mp}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>LOW</th>
+                                    <td>{{$workplace->female}}</td>
+                                    <td>
+                                        @php
+                                            $fp = number_format(getPercentage($workplace->female,$workplace->male+$workplace->female)).'%';
+                                        @endphp
+                                        <p class="alert-{{getPercentageStatusColor($fp)}} p-1 mb-0" style="width:{{$fp}}">
+                                            {{$fp}}
+                                        </p>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <th>HIGH</th>
+                                    <td>{{$workplace->female}}</td>
+                                    <td>
+                                        @php
+                                            $fp = number_format(getPercentage($workplace->female,$workplace->male+$workplace->female)).'%';
+                                        @endphp
+                                        <p class="alert-{{getPercentageStatusColor($fp)}} p-1 mb-0" style="width:{{$fp}}">
+                                            {{$fp}}
+                                        </p>
+                                    </td>
+                                </tr>    
+                            </table> 
+
+                            Appropriate dietary and lifestyle counseling were done for those with underweight, over weight and obese employees.<br>
+
+                            •   Sixteen (16)employees were having vision problem. All advised to attend ophthalmology clinic.<br>
+                            •   Sixty -one (61) employees were having Dental carries. Advised to attend dental clinic.<br>
+
+                            •   One hundred twenty one (121) employees had high blood pressure out of which 56had malignant hypertension advised to start cardiac clinics immediately; 2had low blood pressure while majority (274) had normal Blood Pressure during the test.<br>
+
+                            <h4>5.  Audiometry.</h4>
+                            •   All workers had normal audiometry except two who had unilateral diminished hearing since childhood.<br>
+
+                            <h4>6.  Conclusion and recommendation</h4>
+                             @php //todo add field in workplace checkup to set a conclusion statement for each @endphp   
+                            The work process at Alliance One Tobacco (T) LTD may have exposed workers to work related hazards such as harmful noise levels, poor illumination and ergonomic problems, that may lead to musculoskeletal injuries, etc. In order to ascertain the level of exposure, associated risks, and therefore plan and implement appropriate control measures against occupational hazards, the followings are recommended<br>
+
+                            •   Regular Risk assessment to be done as per section 60 of OHS Act. <br>
+                            •   Refresher training courses of workers on first aid.<br>
+                            •   All workers should undergo pre-employment medical examination when they are employed and annual periodic medical examination and exit medical examinations.<br>
+                            •   For employees who require follow up medical services, please assist them accordingly, while at work.<br><br>
+
+                            <i>Prepared by: </i> <strong>Dr S.J. NYUMBA MMEDICAL INSPECTOR -OSHA MOROGORO</strong>
+
+
+      
                         </div>
                     </div>
                 </div>

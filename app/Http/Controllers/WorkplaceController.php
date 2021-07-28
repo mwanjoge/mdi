@@ -80,7 +80,7 @@ class WorkplaceController extends Controller
         $reports = $reportsData->get();
         //return Employee::where('birthday', '<' , date('Y-m-d', strtotime('-60 years')))->get();
         $greaterThanSixty = count($reportsData->where('employees.birthday','<' , date('Y-m-d h:m:s', strtotime('-60 years')))->get());
-        return $greaterThanSixty;
+       // return $greaterThanSixty;
         return view('workplace.workplace_report_leter',compact('reports','workplace'));
     }
 

@@ -9,6 +9,8 @@
                 <div class="modal-body">
                     @csrf
                     <input type="date" name="submited_at" class="form-control">
+                    <label>Checkup Conclusion</label>
+                    <textarea name="letter_conclusion" class="form-control mt-1"></textarea>
                     <input type="hidden" name="checkup" class="form-control" value="{{$placeCheckup->id}}">
                 </div>
                 <div class="modal-footer">

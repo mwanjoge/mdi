@@ -52,7 +52,31 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'category' => 'Past Medical History',
-                'name' => 'PMH',
+                'name' => 'Non Occupational Related',
+            ],
+            [
+                'category' => 'Past Medical History',
+                'name' => 'Occupational Related',
+            ],
+            [
+                'category' => 'General Examination',
+                'name' => 'Vision Problem',
+            ],
+            [
+                'category' => 'General Examination',
+                'name' => 'Dental Carries',
+            ],
+            [
+                'category' => 'General Examination',
+                'name' => 'High Blood Pressure',
+            ],
+            [
+                'category' => 'General Examination',
+                'name' => 'Audiomentry',
+            ],
+            [
+                'category' => 'General Examination',
+                'name' => 'Vision Problem',
             ],
             [
                 'category' => 'Body Mass Index',

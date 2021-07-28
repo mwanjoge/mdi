@@ -2,13 +2,15 @@
 
     <tbody>
         @foreach($placeCheckup->checkups as $checkup)
-        <tr class="bg-info">
-            <th colspan="5" >
-                {{$checkup->employee->name}}
-            </th>
-        </tr>
+        <thead>
+            <tr class="alert-info">
+                <th colspan="5" >
+                    {{$checkup->employee->name}}
+                </th>
+            </tr>
+        </thead>
         @foreach(getDiseaseCategories() as $disease)
-            <tr class="bg-success text-white">
+            <tr class="alert-success">
                 <th colspan="5">
                     {{$disease->category}}
                 </th>
@@ -24,16 +26,18 @@
                         <textarea id="report-desc{{$report->id}}" class="form-control report-description" style="display:{{$report->descriptions === null ? 'none':'block'}}">{{$report->descriptions}}</textarea>
                     </td>
                 @endforeach
-                <td>
-                    <select name="status" class="form-control checkup-status" data-id="{{$checkup->id}}" id="{{$checkup->id}}">
-                        {{--<option value="{{$employee->checkups->last()->status}}">{{$employee->checkups->last()->status}}</option>--}}
-                        <option value="fit">Fit</option>
-                        <option value="not fit">Not Fit</option>
-                        <option value="fit with precautions">Fit With Precautions</option>
-                    </select>
-                </td>
             </tr>
         @endforeach
+        <tr>
+            <td colspan="5">
+                <select name="status" class="form-control checkup-status" data-id="{{$checkup->id}}" id="{{$checkup->id}}">
+                    <option value="">Health Status</option>
+                    <option value="fit">Fit</option>
+                    <option value="not fit">Not Fit</option>
+                    <option value="fit with precautions">Fit With Precautions</option>
+                </select>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 </table>

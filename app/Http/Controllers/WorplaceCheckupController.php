@@ -12,7 +12,11 @@ class WorplaceCheckupController extends Controller
         $this->middleware('auth');
     }
     public function submit(Request $request){
-        WorkplaceCheckup::find($request->checkup)->update(['submited_at' => $request->submited_at]);
+        WorkplaceCheckup::find($request->checkup)
+            ->update([
+                'submited_at' => $request->submited_at,
+                'latter_conclusion' => $request->letter_conclusion
+            ]);
         Alert::success('Updated','Submitted date set successfully');
         return back();
     }
