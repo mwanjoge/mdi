@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -101,20 +100,24 @@
                                         <td>{{$checkup->type}}</td>
                                         <td>{{$checkup->checkupDate->format('d M Y')}}</td>
                                         <td class="text-uppercase {{$checkup->status === 'not checked'? 'bg-warning text-white':'bg-success text-white'}}">
-                                            {{$checkup->status }}</td>
+                                            {{$checkup->status }}
+                                            <a href="{{route('employee.results',[$checkup->employee_id,$workplace->id])}}">
+                                                <i class="fa fa-user-md"></i> Results
+                                            </a>
+                                        </td>
                                         <td class="">
                                             @include('partials._member_checkup_modal')
                                             <div class="dropup">
-                                                <a title="more" class="p-1" href="#"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a title="more" class="p-1" href="#"  type="button" id="dropdownMenuButton{{$checkup->id}}" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="fa fa-ellipsis-v"></i>
                                                 </a>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{$checkup->employee_id}}">
                                                     <li>
                                                         <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#employee-checkups-create{{$checkup->employee->id}}">
                                                             <i class="fa fa-user-md"></i> Checkup
                                                         </a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Show Results</a></li>
                                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                                 </ul>
                                             </div>
@@ -196,52 +199,7 @@
                     </span>
                 </p>
                 <hr>
-                <table class="table table-striped">
-                    <tbody>
-                        @foreach ($workplace->workplaceCheckups as $placeCheckup)
-                            <tr>
-                                <td>
-                                    @include('partials._checkup_modal')
-                                    @include('checkup._submit_modal')
-                                    {{--<a href="#" class="text-black">--}}
-                                        <div class="{{Request::is('workplace/'.$workplace->id.'/'.$placeCheckup->id) ? 'btn btn-primary d-block' : ''}}">
-                                            <p class="text-black">
-                                                <strong class="mb-0">
-                                                    <span class="float-start">Date: {{$placeCheckup->checkup_at->format('d M Y')}} </span>
-                                                    <span class="float-end">{{$placeCheckup->type}} </span>
-                                                </strong><br>
-                                            <hr class="mb-0 mt-0" style="width: 100%">
-                                            <span class="float-start"> {{$placeCheckup->total_employee}} employees </span>
-                                            <span class="float-end">{{$placeCheckup->total_checked}} checked</span>
-                                            </p>
-                                            <span class="float-start">
-                                                <a href="{{url('workplace/report/'.$placeCheckup->id)}}" style="text-decoration: none;" class="m-1" >
-                                                    <i class="fa fa-file-word"></i>
-                                                    Report
-                                                </a>
-                                                <a href="{{url('workplace/results/'.$workplace->id)}}" style="text-decoration: none;" class="m-1">
-                                                    <i class="fa fa-chart-line"> </i>
-                                                    Results
-                                                </a>
-                                                <a href="{{route('workplace.show',[$workplace->id,$placeCheckup->id])}}" style="text-decoration: none;" class="m-1">
-                                                    <i class="fa fa-long-arrow-alt-left"></i>
-                                                    Show
-                                                </a>
-                                                <a href="javascript:void(0)" style="text-decoration: none;" class="m-1" data-bs-toggle="modal" data-bs-target="#checkups-attend{{$placeCheckup->id}}">
-                                                    <i class="fa fa-user-md"> </i>
-                                                    Attend
-                                                </a>
-                                                <a class="p-1" href="javascript:void(0)" data-bs-target="#submit-checkup-{{$placeCheckup->id}}" data-bs-toggle="modal" style="text-decoration: none;">
-                                                    <i class="fa fa-calendar-check"></i> submit
-                                                </a>
-                                            </span>
-                                        </div>
-                                    {{--</a>--}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                @include('workplace._workplace_checkups')
             </div>
         </div>
     </div>

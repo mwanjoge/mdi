@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\WorkPlace;
+use App\Services\CheckupServices;
 use Illuminate\Support\Facades\DB;
+
+/* $checkupServices = new CheckupServices; */
 
 function getWorkplaces(){
     return WorkPlace::all();
@@ -72,7 +75,12 @@ function numberToWords($num){
         return implode(' ', $words);
 }
 function getEmployeeCheckupResultsByDiseaseCategory($category,$workplaceCheckupId,$employeeId){
-    return \App\Services\CheckupServices::getEmployeeCheckupResultsByDiseaseCategory($category,$workplaceCheckupId,$employeeId);
+    $checkupServices = new CheckupServices();
+    dd($checkupServices->setDiseaseCategory($category)
+        ->setWorkplaceCheckupId($workplaceCheckupId)
+        ->setEmployeeId($employeeId)
+        ->getEmployeeCheckupResultsByDiseaseCategory());
+
 }
 
 function getAllDiseases(){
@@ -81,6 +89,20 @@ function getAllDiseases(){
 
 function getDiseaseCategories(){
     return DB::table('diseases')->distinct()
-        ->select(DB::raw('MIN(id) as id, category'))
-        ->groupBy('category')->get();
+        ->select(DB::raw('MIN(diseases.id) as id, diseases.category_id,categories.name as category'))
+        ->join('categories','categories.id','=','diseases.category_id')
+        ->groupBy('diseases.category_id')->get();
+}
+function employeeCheckupResultsByDiseaseCategory($categoryId,$workplaceCheckupId,$employeeId){
+    $checkupServices = new CheckupServices;
+    return $checkupServices
+                ->setDiseaseCategory($categoryId)
+                ->setEmployeeId($employeeId)
+                ->setWorkplaceCheckupId($workplaceCheckupId)
+                ->getCheckupResultsByWorkplaceCheckupId()
+                ->getCheckupResultsByDiseaseCategory()
+                ->getEmployeeCheckupResults()
+                ->getData();
+
+   // dd($data);
 }

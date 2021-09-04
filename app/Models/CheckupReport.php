@@ -9,7 +9,7 @@ class CheckupReport extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'checkup_id','employee_id','disease_id','hasIssue','results','descriptions','workplace_checkup_id'
+        'checkup_id','employee_id','category_id','disease_id','hasIssue','results','descriptions','workplace_checkup_id'
     ];
 
     public function checkup(){

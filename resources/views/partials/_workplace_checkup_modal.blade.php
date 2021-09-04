@@ -13,8 +13,10 @@
                     <label>Checkup Type</label>
                     <select name="type" class="form-control" required>
                         <option readonly="true">Type</option>
-                        <option value="Pre Employment">Pre Employment</option>
-                        <option value="Post Employment">Post Employment</option>
+                        <option value="Pre">Pre</option>
+                        <option value="Exit">Exit</option>
+                        <option value="Periodic">Periodic</option>
+                        <option value="">Special</option>
                     </select>
                     <input type="hidden" name="workplace" value="{{$workplace->id}}">
                     <label>Checkup Date</label>

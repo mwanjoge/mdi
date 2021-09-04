@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Disease;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,7 +21,8 @@ class SettingsController extends Controller
 
     public function index(){
         $diseases = Disease::latest()->get();
-        return view('settings.index',compact('diseases'));
+        $categories = Category::latest()->get();
+        return view('settings.index',compact('diseases','categories'));
     }
 
     public function diseaseDelete($id){
@@ -34,6 +36,13 @@ class SettingsController extends Controller
     public function diseaseStore(Request $request){
         Disease::create($request->all());
         Alert::success('Disease Created','You have successfuly Store new Disease');
+        return redirect()->back();
+
+    }
+
+    public function categoryStore(Request $request){
+        Category::create($request->all());
+        Alert::success('Disease  Category Created','You have successfuly Store new Disease Category');
         return redirect()->back();
 
     }

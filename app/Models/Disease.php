@@ -9,11 +9,15 @@ class Disease extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'category','name'
+        'category_id','name'
     ];
 
     public function checkupReports(){
         return $this->hasMany(CheckupReport::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
     public static function boot()

@@ -4,20 +4,20 @@
         @foreach($placeCheckup->checkups as $checkup)
         <thead>
             <tr class="alert-info">
-                <th colspan="5" >
+                <th colspan="13" >
                     {{$checkup->employee->name}}
                 </th>
             </tr>
         </thead>
         @foreach(getDiseaseCategories() as $disease)
             <tr class="alert-success">
-                <th colspan="5">
+                <th colspan="13">
                     {{$disease->category}}
                 </th>
             </tr>
             <tr>
                 <input type="hidden" name="employee[]" value="{{$checkup->employee->id}}">
-                @foreach (getEmployeeCheckupResultsByDiseaseCategory($disease->category,$placeCheckup->id,$checkup->employee_id) as $report)
+                @foreach (employeeCheckupResultsByDiseaseCategory($disease->category_id,$placeCheckup->id,$checkup->employee_id) as $report)
                     <td>
                         <label>{{$report->disease->name}}</label>
                         <input type="hidden" value="blood pressure" name="disease[]" class="form-check">

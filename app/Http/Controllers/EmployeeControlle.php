@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\EmployeeImport;
 use App\Models\Employee;
 use App\Models\UploadReport;
+use App\Models\WorkPlace;
 use App\Services\EmployeeServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -114,5 +115,11 @@ class EmployeeControlle extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function results($id,$workplaceCheckupId){
+        $employee = Employee::find($id);
+        $workplace = WorkPlace::find($workplaceCheckupId);
+        return view("employee.show_results",compact('workplace','employee'));
     }
 }

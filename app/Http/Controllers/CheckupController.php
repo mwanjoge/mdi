@@ -87,17 +87,20 @@ class CheckupController extends Controller
         return redirect()->back();
     }
 
-    public function workplaceCheckup(Request $request){
+    public function workplaceCheckup(Request $request, CheckupServices $checkupServices){
         $workplace = WorkPlace::find($request->workplace);
-        $employees = CheckupServices::getUnCheckedEmployeeByTypePlace($request->type,$request->workplace);
+        $employees = $checkupServices->setType($request->type)
+            ->setWorkplaceId($request->workplace)
+            ->getUnCheckedEmployeeByTypePlace();
+
         if(count($employees) > 0){
             $workplaceCheck = new WorkplaceCheckup([
                 'work_place_id' => $request->workplace,
                 'checkup_at' => $request->checkup_at,
                 'type' => $request->type,
                 'total_employee' => count($workplace->employees),
-                'female' => count(CheckupServices::getFemaleEmployeesCount($request->type,$request->workplace)),
-                'male' => count(CheckupServices::getMaleEmployeesCount($request->type,$request->workplace)),
+                'female' => count($checkupServices->setType($request->type)->setWorkplaceId($request->workplace)->getFemaleEmployeesCount()),
+                'male' => count($checkupServices->setType($request->type)->setWorkplaceId($request->workplace)->getMaleEmployeesCount()),
             ]);
             $workplaceCheck->save();
 
@@ -116,6 +119,7 @@ class CheckupController extends Controller
                         'employee_id' => $employee->id,
                         'checkup_id' => $checkup->id,
                         'disease_id' => $disease->id,
+                        'category_id' => $disease->category_id,
                     ]);
                 }
             }

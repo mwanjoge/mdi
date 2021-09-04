@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Bill;
 use App\Models\Disease;
+use App\Models\Category;
 use App\Models\Employee;
 use App\Models\User;
 use App\Models\WorkPlace;
@@ -21,68 +22,69 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         //medical inspection system DR Nyumba Hypertension, Diabetes mellitus, Asthma, Sickle Cell Disease,
-        Disease::insert([
-            [
-                'category' => 'Family History Diseases',
-                'name' => 'Hypertension',
+        $diseaseCategories = [
+            'cat1'=>[
+                'name' => 'Family History Diseases',
+                'discriptions' => 'History of Diseases in Family',
+                'diseases' => [
+                    'Hypertension',
+                    'Diabetes mellitus',
+                    'Asthma',
+                    'Sickle Cell Disease',
+                ]
             ],
-            [
-                'category' => 'Family History Diseases',
-                'name' => 'Diabetes mellitus',
+            'cat2' => [
+                'name' => 'Systemic Review',
+                'discriptions' => 'Systemic Review',
+                'diseases' => [
+                    'Chronic diarrhea > 2 weeks',
+                    'Chronic cough > 4 weeks',
+                    'Chronic abdominal pain',
+                    'STI',
+                    'Weight loss',
+                    'Recurrent fever',
+                    'Chest pain and heart beat awareness',
+                    'Hearing difficulty',
+                    'Ear discharge',
+                    'Malaria/tropical diseases',
+                    'Lower back pain',
+                    'Nausea/vomiting',
+                    'Swollen/ painful joints',
+                    'Conjunctivitis',
+                    'Recurrent cough',
+                    'Attacks of difficulty in breathing',
+                    'Visual problems',
+                    'Others'
+                ]
             ],
-            [
-                'category' => 'Family History Diseases',
-                'name' => 'Asthma',
+            'cat2' => [
+                'name' => 'Past Medical History',
+                'discriptions' => 'Past Medical History',
+                'diseases' => [
+                    'Non Occupational Related',
+                    'Occupational Related',
+                    'Diabetes mellitus (sugar sickness)',
+                    'Fits, fainting, backouts, Epilepsy',
+                    'Psychiatric illness',
+                    'High Blood Pressure/ Heart problems',
+                    'Chest disease/ Asthma/ shortness of breath',
+                    'Major surgeries/ operations',
+                    'PUD',
+                    'Allergies',
+                    'Chronic back pain > 4 weeks ',
+                    'Serious injuries or accident',
+                    'Others'
+                ],
             ],
-            [
-                'category' => 'Family History Diseases',
-                'name' => 'Sickle Cell Disease',
-            ],
-            [
-                'category' => 'Systemic Review',
-                'name' => 'Headache',
-            ],
-            [
-                'category' => 'Systemic Review',
-                'name' => 'malaise',
-            ],
-            [
-                'category' => 'Systemic Review',
-                'name' => 'gonorrhea',
-            ],
-            [
-                'category' => 'Past Medical History',
-                'name' => 'Non Occupational Related',
-            ],
-            [
-                'category' => 'Past Medical History',
-                'name' => 'Occupational Related',
-            ],
-            [
-                'category' => 'General Examination',
-                'name' => 'Vision Problem',
-            ],
-            [
-                'category' => 'General Examination',
-                'name' => 'Dental Carries',
-            ],
-            [
-                'category' => 'General Examination',
-                'name' => 'High Blood Pressure',
-            ],
-            [
-                'category' => 'General Examination',
-                'name' => 'Audiomentry',
-            ],
-            [
-                'category' => 'General Examination',
-                'name' => 'Vision Problem',
-            ],
-            [
-                'category' => 'Body Mass Index',
-                'name' => 'BMI',
-            ]
-        ]);
+        ];
+        foreach($diseaseCategories as $cat){
+            $category = Category::create(['name' => $cat['name'],'descriptions' => $cat['discriptions']]);
+            foreach($cat['diseases'] as $dis){
+                $disease = new Disease(['name' => $dis]);
+                $category->diseases()->save($disease);
+            }
+        }
+        //Disease::insert();
         User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',

@@ -18,6 +18,7 @@ class CreateCheckupReportTable extends Migration
             $table->foreignId('checkup_id');
             $table->foreignId('workplace_checkup_id');
             $table->foreignId('employee_id');
+            $table->foreignId('category_id');
             $table->foreignId('disease_id');
             $table->boolean('hasIssue')->default(false);
             $table->string('results')->nullable();

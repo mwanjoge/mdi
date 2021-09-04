@@ -11,49 +11,118 @@ use Illuminate\Support\Facades\DB;
 
 class CheckupServices
 {
+    public $workplaceId;
+    public $type;
+    public $diseaseCategory;
+    public $workplaceCheckupId;
+    public $employeeId;
+    public $data;
+    static $checkupByDiseaseCategory;
+
+
+    public function getData(){
+        return $this->data->get();
+    }
+	public function setWorkplaceId($workplaceId){
+		$this->workplaceId = $workplaceId;
+        return $this;
+	}
+
+	public function setType($type) {
+		$this->type = $type;
+        return $this;
+	}
+
+	public function setDiseaseCategory($diseaseCategory){
+		$this->diseaseCategory = $diseaseCategory;
+        return $this;
+	}
+
+	public function setWorkplaceCheckupId($workplaceCheckupId) {
+		$this->workplaceCheckupId = $workplaceCheckupId;
+        return $this;
+	}
+
+	public function setEmployeeId($employeeId){
+		$this->employeeId = $employeeId;
+        return $this;
+	}
+
     public static function getAllCheckups(){
         return Checkup::all();
     }
-    public static function unCheckedEmployeeByTypePlace($type,$place){
+    public function unCheckedEmployeeByTypePlace(){
         return DB::table('employees')
-           ->whereNotExists(function ($query) use ($type,$place){
+           ->whereNotExists(function ($query){
                $query->select(DB::raw(1))
                      ->from('checkups')
                      ->whereColumn('checkups.employee_id', 'employees.id')
-                     ->where('type',$type)
-                     ->where('work_place_id',$place);
+                     ->where('type',$this->type)
+                     ->where('work_place_id',$this->workplaceId);
            });
     }
-    public static function getUnCheckedEmployeeByTypePlace($type,$place){
-        return self::unCheckedEmployeeByTypePlace($type,$place)->get();
+    public function getUnCheckedEmployeeByTypePlace(){
+        return $this->unCheckedEmployeeByTypePlace()->get();
     }
-    public static function getFemaleEmployeesCount($type,$place){
-        return self::unCheckedEmployeeByTypePlace($type,$place)->where('gender','female')->get();
+    public function getFemaleEmployeesCount(){
+        return $this->unCheckedEmployeeByTypePlace()->where('gender','female')->get();
     }
-    public static function getMaleEmployeesCount($type,$place){
-        return self::unCheckedEmployeeByTypePlace($type,$place)->where('gender','male')->get();
+    public function getMaleEmployeesCount(){
+        return $this->unCheckedEmployeeByTypePlace()->where('gender','male')->get();
     }
     public static function getAllWorkplaceCheckups(){
         return WorkplaceCheckup::all();
     }
-    public static function getCheckupResultsByWorkplaceCheckupId($workplaceCheckupId){
-        return CheckupReport::select('checkup_reports.*')
-            ->join('workplace_checkups','checkup_reports.workplace_checkup_id','=','workplace_checkups.id')
+    public function getCheckupResultsByWorkplaceCheckupId(){
+        $this->data = CheckupReport::select('checkup_reports.*')
+            //->join('diseases','diseases.id','=','checkup_reports.disease_id')
+            ->where('checkup_reports.workplace_checkup_id',$this->workplaceCheckupId);
+           // dd($this->data);
+            return $this;
+    }
+    public function getCheckupsByWorkplaceCheckupId(){
+        $this->data = Checkup::select('checkups.*')
+            ->join('checkup_reports','checkup_reports.checkup_id','=','checkups.id')
             ->join('diseases','diseases.id','=','checkup_reports.disease_id')
-            ->where('workplace_checkup_id',$workplaceCheckupId);
+            ->where('checkup_reports.workplace_checkup_id',$this->workplaceCheckupId)
+            ->where('checkups.workplace_checkup_id',$this->workplaceCheckupId);
+            return $this;
+
     }
-    public static function getCheckupResultsByType($type,$workplaceCheckupId){
-        return self::getCheckupResultsByWorkplaceCheckupId($workplaceCheckupId)
-            ->where('workplace_checkups.type',$type)->get();
+    public function getCheckupResultsByType(){
+        $this->data = $this->data
+            ->where('workplace_checkups.type',$this->type)->get();
+            return $this;
     }
-    public static function getCheckupResultsByDiseaseCategory($diseaseCategory,$workplaceCheckupId){
-        return self::getCheckupResultsByWorkplaceCheckupId($workplaceCheckupId)
-            ->where('diseases.category',$diseaseCategory)->get();
+
+    public function getCheckupResultsByDiseaseCategory(){
+            $this->data = $this->data
+            ->where('category_id',$this->diseaseCategory);
+            return $this;
     }
-    public static function getEmployeeCheckupResultsByDiseaseCategory($diseaseCategory,$workplaceCheckupId,$employeeId){
-        return self::getCheckupResultsByWorkplaceCheckupId($workplaceCheckupId)
-            ->where('diseases.category',$diseaseCategory)
-            ->where('checkup_reports.employee_id',$employeeId)->get();
+
+    public function positive(){
+        $this->data = $this->data
+            ->where('hasIssue',true);
+            //->groupBy('checkups.id');
+            return $this;
     }
+
+    public function negative(){
+        $this->data = $this->data
+            //->where('diseases.category',$this->diseaseCategory)
+            ->where('hasIssue',false);
+            //->distinct('checkup_reports.employee_id')
+           // ->unique()->values()->all();
+           // ->unique('checkup_reports.employee_id');
+            return $this;
+    }
+
+    public function getEmployeeCheckupResults(){
+        $this->data = $this->data
+            ->where('employee_id',$this->employeeId);
+            return $this;
+    }
+
 
 }
