@@ -16,6 +16,10 @@
         <i class="fa fa-medkit"></i>
         Checkups
     </a>
+    <a class="btn {{Request::is('bill*')? 'btn-primary':'btn-secondary'}}" href="{{route('bill.index')}}">
+        <i class="fa fa-money-check-alt"></i>
+        Bills
+    </a>
     <a class="btn {{Request::is('settings*')? 'btn-primary':'btn-secondary'}}" href="{{route('settings.index')}}">
         <i class="fa fa-cogs"></i>
         Settings

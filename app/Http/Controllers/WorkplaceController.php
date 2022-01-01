@@ -65,7 +65,9 @@ class WorkplaceController extends Controller
     }
 
     public function report($id){
+        //return "here";
         $workplace = WorkplaceCheckup::find($id);
+        //return $workplace;
         $reports = Checkup::where('workplace_checkup_id',$id)->get();
         return view('workplace.workplace_report',compact('reports','workplace'));
     }

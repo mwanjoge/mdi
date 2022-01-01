@@ -16,9 +16,11 @@ class CreateBillTable extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
             $table->foreignId('work_place_id');
-            $table->string('control_number');
+            $table->string('control_number')->nullable();
             $table->string('ref_number');
-            $table->decimal('amount',22,2);
+            $table->decimal('amount',22,2)->default(0);
+            $table->decimal('amountPaid',22,2)->default(0);
+            $table->decimal('balance',22,2)->default(0);
             $table->boolean('isPaid');
             $table->timestamp('billable_date');
             $table->timestamp('paid_date')->nullable();

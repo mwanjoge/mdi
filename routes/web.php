@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CheckupController;
 use App\Http\Controllers\EmployeeControlle;
 use App\Http\Controllers\SettingsController;
@@ -31,6 +32,7 @@ Route::get('employee/results/{id}/{workplaceCheckup}',[EmployeeControlle::class,
 Route::resource('workplace',WorkplaceController::class);
 Route::get('workplace/{id}/{checkup?}',[WorkplaceController::class, 'getWorkplaceCheckup'])->name('workplace.show');
 Route::resource('checkup',CheckupController::class);
+Route::resource('bill',BillController::class);
 Route::post('workplace/checkup',[CheckupController::class,'workplaceCheckup'])->name('workplace.checkup');
 Route::get('results/toggle/{id}',[CheckupController::class,'toggleResults'])->name('results.toggle');
 Route::get('checkup/status/{id}/{status}',[CheckupController::class,'updateStatus'])->name('checkup.status');

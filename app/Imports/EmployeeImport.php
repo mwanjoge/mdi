@@ -57,8 +57,8 @@ class EmployeeImport implements ToCollection, WithHeadingRow, SkipsOnError
                 else{
                     $newWorkplace = WorkPlace::create([
                         'name' => trim($row['workplace']),
-                        'location' => trim($row['location']),
-                        'address' => trim($row['address']),
+                        'location' => trim($row['workplace']), //todo add location on excel
+                        'address' => trim($row['workplace']),
                         'status' => 'Not Inspected'
                     ]);
                     Employee::create([

@@ -93,6 +93,8 @@ class CheckupController extends Controller
             ->setWorkplaceId($request->workplace)
             ->getUnCheckedEmployeeByTypePlace();
 
+            //return $employees;
+
         if(count($employees) > 0){
             $workplaceCheck = new WorkplaceCheckup([
                 'work_place_id' => $request->workplace,

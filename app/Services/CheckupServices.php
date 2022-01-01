@@ -53,6 +53,7 @@ class CheckupServices
     }
     public function unCheckedEmployeeByTypePlace(){
         return DB::table('employees')
+        ->where('work_place_id',$this->workplaceId)
            ->whereNotExists(function ($query){
                $query->select(DB::raw(1))
                      ->from('checkups')

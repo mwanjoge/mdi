@@ -8,16 +8,17 @@
             </div>
             <form method="post" action="{{route('employee.store')}}">
                 @csrf
-                @if(Request::is('workplace*'))
-                    <input type="hidden" name="work_place_id" value="{{$workplace->id}}">
-                @else
-                    <select class="form-control" name="work_place_id">
-                        @foreach(getWorkplaces() as $workplace)
-                            <option value="{{$workplace->id}}">{{$workplace->name}}</option>
-                        @endforeach
-                    </select>
-                @endif
+
                 <div class="modal-body">
+                    @if(Request::is('workplace*'))
+                        <input type="hidden" name="work_place_id" value="{{$workplace->id}}">
+                    @else
+                        <select class="form-control" name="work_place_id">
+                            @foreach(getWorkplaces() as $workplace)
+                                <option value="{{$workplace->id}}">{{$workplace->name}}</option>
+                            @endforeach
+                        </select>
+                    @endif
                     <div class="mb-3 row">
                         <div class="col-md-4">
                             <input class="form-control" type="text" name="name" placeholder="First Name">

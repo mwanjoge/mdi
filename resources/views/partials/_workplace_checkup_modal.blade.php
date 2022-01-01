@@ -18,7 +18,7 @@
                         <option value="Periodic">Periodic</option>
                         <option value="">Special</option>
                     </select>
-                    <input type="hidden" name="workplace" value="{{$workplace->id}}">
+                    <input type="" name="workplace" value="{{$workplace->id}}">
                     <label>Checkup Date</label>
                     <input type="date" name="checkup_at" class="form-control">
 

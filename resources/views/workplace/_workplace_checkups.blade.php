@@ -29,7 +29,7 @@
                                     <i class="fa fa-file-word"></i>
                                     Report
                                 </a>
-                                <a href="{{url('workplace/results/'.$workplace->id)}}" style="text-decoration: none;" class="m-1">
+                                <a href="{{url('workplace/results/'.$placeCheckup->id)}}" style="text-decoration: none;" class="m-1">
                                     <i class="fa fa-chart-line"> </i>
                                     Results
                                 </a>

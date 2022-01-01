@@ -10,6 +10,7 @@ use App\Services\EmployeeServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Exceptions\NoTypeDetectedException;
 
 class EmployeeControlle extends Controller
 {
@@ -57,10 +58,16 @@ class EmployeeControlle extends Controller
     }
 
     public function upload(Request $request){
-        //return $request->all();
-        $import = new EmployeeImport();
-        $import->import($request->upload);
+        try {
+            $import = new EmployeeImport();
+            $import->import($request->upload);
+        } catch (NoTypeDetectedException $e) {
+            Alert::error("Sorry you are using a wrong format to upload files.");
+            return back();
+        }
+
         $issues = UploadReport::all();
+
         if(Session::has('issue')){
             Alert::warning('Complete With Issues', 'Excel Uploaded with
              some issues it looks like some of employee listed below have been already checked');
